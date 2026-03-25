@@ -72,7 +72,7 @@ export default async function TeamDetailPage({
           variant="spotlight"
           eyebrow="Profile"
           title="Team snapshot"
-          description="Start with the profile that matters most: record, efficiency, and pace."
+          description="Start with the big picture first: record, efficiency, pace, and the overall shape of the team."
         >
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
             {viewModel.summaryCards.map((card) => (

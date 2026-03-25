@@ -27,7 +27,7 @@ export default async function GamesPage({
         variant="spotlight"
         eyebrow="Date view"
         title={viewModel.sectionTitle}
-        description={viewModel.sectionDescription}
+        description="A clean slate browser for light nights, crowded boards, and delayed markets."
         actions={
           <div className="flex flex-wrap gap-2">
             <Link href={viewModel.previousHref} className="ui-button">
@@ -42,7 +42,7 @@ export default async function GamesPage({
           </div>
         }
       >
-        <div className="mb-6 flex flex-wrap items-center justify-between gap-3 rounded-[24px] border border-[var(--border-soft)] bg-[var(--surface-strong)] px-5 py-4">
+        <div className="mb-6 flex flex-wrap items-center justify-between gap-3 rounded-[26px] border border-[rgba(17,25,24,0.08)] bg-[rgba(255,253,249,0.86)] px-5 py-4">
           <p className="text-sm font-semibold text-slate-800">{viewModel.selectedDateLabel}</p>
           <p className="text-sm text-[var(--text-muted)]">{viewModel.slateSummary}</p>
         </div>
@@ -63,26 +63,26 @@ export default async function GamesPage({
                 footer={<p className="text-sm leading-6 text-[var(--text-soft)]">{game.statusSummary}</p>}
               >
                 <div className="grid gap-3 sm:grid-cols-3">
-                  <div className="rounded-[18px] border border-[var(--border-soft)] bg-[var(--surface-soft)] p-3">
+                  <div className="rounded-[16px] border border-[rgba(17,25,24,0.07)] bg-[rgba(243,235,222,0.76)] p-3">
                     <StatRow
                       label={game.markets[0].label}
                       value={game.markets[0].value}
                       detail={game.markets[0].detail}
                     />
                   </div>
-                  <div className="rounded-[18px] border border-[var(--border-soft)] bg-[var(--surface-soft)] p-3">
+                  <div className="rounded-[16px] border border-[rgba(17,25,24,0.07)] bg-[rgba(243,235,222,0.76)] p-3">
                     <StatRow
                       label={game.markets[1].label}
                       value={game.markets[1].value}
                       detail={game.markets[1].detail}
                     />
                   </div>
-                  <div className="rounded-[18px] border border-[var(--border-soft)] bg-[var(--surface-soft)] p-3">
+                  <div className="rounded-[16px] border border-[rgba(17,25,24,0.07)] bg-[rgba(243,235,222,0.76)] p-3">
                     <StatRow
                       label={game.markets[2].label}
                       value={game.markets[2].value}
                       detail={game.markets[2].detail}
-                    />
+      />
                   </div>
                 </div>
               </DataCard>

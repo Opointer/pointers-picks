@@ -16,12 +16,12 @@ export function TopUtilityBar({ status }: { status: PlatformStatusViewModel }) {
 
   return (
     <div className="sticky top-0 z-20 mb-8 pt-1">
-      <div className="flex flex-wrap items-center justify-between gap-4 rounded-[26px] border border-[var(--border-soft)] bg-[rgba(255,252,247,0.94)] px-5 py-4 shadow-[var(--shadow-subtle)]">
+      <div className="flex flex-wrap items-center justify-between gap-4 rounded-[28px] border border-[rgba(17,25,24,0.08)] bg-[rgba(255,252,247,0.95)] px-5 py-4 shadow-[0_10px_22px_rgba(17,25,24,0.04)]">
         <div className="min-w-0">
           <p className="text-[10px] font-semibold uppercase tracking-[0.32em] text-[var(--text-soft)]">
             {activeItem?.label ?? "Desk"}
           </p>
-          <p className="mt-1 text-sm font-medium text-slate-800">
+          <p className="mt-1 text-sm font-medium text-[var(--accent-ink)]">
             {status.summary}
           </p>
         </div>

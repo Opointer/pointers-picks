@@ -6,24 +6,37 @@ import { type DashboardOverviewViewModel } from "@/lib/view-models/dashboard";
 
 export function DashboardOverview({ viewModel }: { viewModel: DashboardOverviewViewModel }) {
   return (
-    <div className="space-y-11">
-      <section className="grid gap-5 xl:grid-cols-[1.3fr_0.7fr]">
+    <div className="space-y-12">
+      <section className="grid gap-5 xl:grid-cols-[1.36fr_0.64fr]">
         <SectionCard
           variant="spotlight"
           eyebrow="Lead matchup"
-          title="Start with the board"
-          description="The front page should get you into the best live route immediately, not make you hunt through the slate."
+          title="Start with tonight"
+          description="The front page should move like a real desk: lead game first, feed context second, route depth right underneath."
         >
           {viewModel.leadGame ? (
-            <DataCard
-              variant="feature"
-              eyebrow="On deck"
-              title={viewModel.leadGame.title}
-              subtitle={viewModel.leadGame.subtitle}
-              description={viewModel.leadGame.description}
-              href={viewModel.leadGame.href}
-              actionLabel="Open matchup"
-            />
+            <div className="grid gap-4 xl:grid-cols-[1.15fr_0.85fr]">
+              <DataCard
+                variant="feature"
+                eyebrow="On deck"
+                title={viewModel.leadGame.title}
+                subtitle={viewModel.leadGame.subtitle}
+                description={viewModel.leadGame.description}
+                href={viewModel.leadGame.href}
+                actionLabel="Open matchup"
+              />
+              <div className="grid gap-4">
+                {viewModel.metrics.slice(0, 2).map((metric) => (
+                  <DataCard
+                    key={metric.label}
+                    variant="stat"
+                    eyebrow={metric.label}
+                    title={metric.value}
+                    description={metric.detail}
+                  />
+                ))}
+              </div>
+            </div>
           ) : (
             <EmptyState
               title={viewModel.emptyState?.title ?? "No live slate"}
@@ -67,9 +80,9 @@ export function DashboardOverview({ viewModel }: { viewModel: DashboardOverviewV
       </section>
 
       <section className="grid gap-4 xl:grid-cols-3">
-        {viewModel.metrics.map((metric) => (
+        {viewModel.metrics.slice(2).concat(viewModel.metrics.slice(0, 1)).map((metric, index) => (
           <DataCard
-            key={metric.label}
+            key={`${metric.label}-${index}`}
             variant="stat"
             eyebrow={metric.label}
             title={metric.value}
@@ -81,8 +94,8 @@ export function DashboardOverview({ viewModel }: { viewModel: DashboardOverviewV
       <section className="grid gap-7 xl:grid-cols-2">
         <SectionCard
           eyebrow="Games"
-          title="Slate routes"
-          description="Open the games already on the board and move into matchup detail without losing context."
+          title="Live slate routes"
+          description="The fastest game routes stay right on the front page so you can move from overview into analysis in one click."
         >
           {viewModel.slateCards.length === 0 ? (
             <EmptyState
@@ -109,8 +122,8 @@ export function DashboardOverview({ viewModel }: { viewModel: DashboardOverviewV
 
         <SectionCard
           eyebrow="Props"
-          title="Player props routes"
-          description="Player pages only appear when the live slate and props feed can support them."
+          title="Props routes"
+          description="Player pages show up here only when the live slate and props feed can support them cleanly."
         >
           {viewModel.propCards.length === 0 ? (
             <EmptyState

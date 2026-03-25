@@ -35,7 +35,7 @@ export function StatusChip({
           : "border-[rgba(24,33,32,0.08)] bg-[rgba(246,240,230,0.7)] text-slate-700";
 
   return (
-    <span className={`inline-flex rounded-full border px-3 py-1 text-[10px] font-semibold tracking-[0.04em] uppercase ${toneClass}`}>
+    <span className={`inline-flex rounded-full border px-2.5 py-1 text-[9px] font-semibold tracking-[0.08em] uppercase ${toneClass}`}>
       {label}
     </span>
   );

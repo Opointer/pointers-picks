@@ -60,7 +60,7 @@ export default async function MatchupPage({
             variant="spotlight"
             eyebrow="Matchup"
             title="Game snapshot"
-            description="Read the matchup quickly: model range, recent form, and the strongest context before you dig deeper."
+            description="A feature view of the game: model range, recent form, and the best high-level context before you go deeper."
           >
             <div className="grid gap-4 xl:grid-cols-[1.15fr_0.85fr]">
               <DataCard
@@ -74,7 +74,7 @@ export default async function MatchupPage({
                     label={detailViewModel.summaryCard.confidenceLabel}
                     tone={detailViewModel.summaryCard.confidenceTone}
                   />
-                  <div className="rounded-[18px] border border-[var(--border-soft)] bg-[var(--surface-soft)] p-4">
+                  <div className="rounded-[16px] border border-[rgba(17,25,24,0.07)] bg-[rgba(243,235,222,0.74)] p-4">
                     <StatRow
                       label="Projected range"
                       value={detailViewModel.summaryCard.projectedRange}
@@ -136,7 +136,7 @@ export default async function MatchupPage({
         <SectionCard
           eyebrow="Comparisons"
           title="Side-by-side context"
-          description="These rows keep both teams readable when you want the matchup profile in one place."
+          description="The table keeps both sides readable at a glance without dropping into a spreadsheet feel."
         >
           <DataTable
             columns={comparisonColumns}
@@ -152,7 +152,7 @@ export default async function MatchupPage({
             variant="dense"
             eyebrow="Factors"
             title="What is driving the game"
-            description="The strongest factors stay high-level and readable instead of dropping into raw model detail."
+            description="The strongest factors stay high-level and readable instead of sinking into raw model detail."
           >
             {detailViewModel.factorCards.length === 0 ? (
               <EmptyState

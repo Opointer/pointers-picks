@@ -37,8 +37,8 @@ export function ConfidenceIndicator({
   const config = toneMap[tone];
 
   return (
-    <div className="flex items-center justify-between gap-3 rounded-[16px] border border-[rgba(24,33,32,0.08)] bg-[rgba(246,240,230,0.64)] px-3.5 py-2.5">
-      <span className={`text-[12px] font-semibold uppercase tracking-[0.08em] ${config.text}`}>{label}</span>
+    <div className="flex items-center justify-between gap-3 rounded-[16px] border border-[rgba(17,25,24,0.07)] bg-[rgba(246,240,230,0.56)] px-3.5 py-2.5">
+      <span className={`text-[11px] font-semibold uppercase tracking-[0.1em] ${config.text}`}>{label}</span>
       <div className="flex items-end gap-1">
         {[0, 1, 2].map((index) => (
           <span

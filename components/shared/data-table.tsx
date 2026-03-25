@@ -87,9 +87,9 @@ export function DataTable<T>({
   }
 
   return (
-    <div className="overflow-hidden rounded-[28px] border border-[var(--border-soft)] bg-[var(--surface-strong)] shadow-[var(--shadow-subtle)]">
+    <div className="overflow-hidden rounded-[28px] border border-[rgba(17,25,24,0.08)] bg-[var(--surface-strong)] shadow-[0_6px_16px_rgba(17,25,24,0.03)]">
       <table className="min-w-full text-left">
-        <thead className="bg-[linear-gradient(180deg,#faf6ef,#f4ede2)] text-[10px] uppercase tracking-[0.3em] text-[var(--text-soft)]">
+        <thead className="bg-[linear-gradient(180deg,#fbf6ee,#f2e8da)] text-[10px] uppercase tracking-[0.32em] text-[var(--text-soft)]">
           <tr>
             {columns.map((column) => (
               <th key={column.key} className={`px-6 py-4 font-semibold ${column.className ?? ""}`}>

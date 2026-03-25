@@ -2,24 +2,26 @@
 
 :root {
   --font-sans: var(--font-body);
-  --background: #f4efe7;
-  --foreground: #141b1a;
+  --background: #f6f1e8;
+  --background-strong: #efe6d8;
+  --foreground: #111918;
   --surface: rgba(255, 252, 247, 0.97);
   --surface-strong: rgba(255, 253, 249, 1);
-  --surface-soft: #f6f0e6;
-  --surface-inset: #eee6da;
-  --border-soft: rgba(24, 33, 32, 0.11);
-  --border-strong: rgba(24, 33, 32, 0.16);
-  --accent-teal: #0d5c63;
-  --accent-teal-strong: #083e44;
-  --accent-teal-soft: #d7eceb;
-  --accent-amber: #9b6a21;
-  --accent-amber-soft: #f4e6c8;
-  --danger-soft: #f4e1e1;
-  --text-muted: #5f6966;
-  --text-soft: #7b8480;
-  --shadow-soft: 0 18px 40px rgba(24, 33, 32, 0.06);
-  --shadow-subtle: 0 8px 18px rgba(24, 33, 32, 0.035);
+  --surface-soft: #f3ebde;
+  --surface-inset: #ece1d0;
+  --border-soft: rgba(17, 25, 24, 0.1);
+  --border-strong: rgba(17, 25, 24, 0.17);
+  --accent-teal: #0a5560;
+  --accent-teal-strong: #063a42;
+  --accent-teal-soft: #d8ecec;
+  --accent-ink: #233534;
+  --accent-amber: #956117;
+  --accent-amber-soft: #f3e4c4;
+  --danger-soft: #f5dfdf;
+  --text-muted: #4e5b58;
+  --text-soft: #73807b;
+  --shadow-soft: 0 24px 52px rgba(17, 25, 24, 0.08);
+  --shadow-subtle: 0 10px 22px rgba(17, 25, 24, 0.045);
 }
 
 @theme inline {
@@ -38,7 +40,9 @@ html {
 
 body {
   margin: 0;
-  background: var(--background);
+  background:
+    linear-gradient(180deg, rgba(255, 253, 249, 0.78), rgba(255, 253, 249, 0)) 0 0 / 100% 11rem no-repeat,
+    linear-gradient(180deg, var(--background) 0%, #f4eee4 100%);
   color: var(--foreground);
   min-height: 100vh;
   text-rendering: optimizeLegibility;
@@ -63,6 +67,9 @@ h2,
 h3,
 h4 {
   font-family: var(--font-display), serif;
+  font-feature-settings:
+    "liga" 1,
+    "kern" 1;
 }
 
 p,
@@ -89,12 +96,13 @@ article {
   gap: 0.5rem;
   border-radius: 999px;
   border: 1px solid var(--border-soft);
-  background: rgba(255, 252, 247, 0.9);
-  padding: 0.7rem 1rem;
+  background: rgba(255, 253, 249, 0.92);
+  padding: 0.72rem 1.02rem;
   font-size: 0.8rem;
   font-weight: 700;
-  letter-spacing: 0.02em;
-  color: #263130;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #22302f;
   transition:
     background 150ms ease,
     border-color 150ms ease,
@@ -104,7 +112,7 @@ article {
 
 .ui-button:hover {
   border-color: var(--border-strong);
-  background: rgba(255, 253, 249, 1);
+  background: rgba(255, 255, 255, 1);
   box-shadow: var(--shadow-subtle);
 }
 
@@ -130,7 +138,7 @@ article {
   gap: 0.45rem;
   font-size: 0.82rem;
   font-weight: 700;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text-muted);
   transition:

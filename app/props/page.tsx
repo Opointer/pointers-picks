@@ -27,7 +27,7 @@ export default async function PropsIndexPage({
           variant="spotlight"
           eyebrow="Date view"
           title={viewModel.selectedDateLabel}
-          description={viewModel.summary}
+          description="A clean daily board for moving from the slate into player-level props pages."
           actions={
             <div className="flex flex-wrap gap-2">
               <Link href={viewModel.previousHref} className="ui-button">
@@ -64,7 +64,7 @@ export default async function PropsIndexPage({
         <SectionCard
           eyebrow="Available pages"
           title="Players on the slate"
-          description="This is the fastest route into player-level props pages for the selected date."
+          description="This board is built for fast entry into player-level props pages without clutter."
         >
           {viewModel.players.length === 0 && viewModel.emptyState ? (
             <EmptyState title={viewModel.emptyState.title} description={viewModel.emptyState.description} />

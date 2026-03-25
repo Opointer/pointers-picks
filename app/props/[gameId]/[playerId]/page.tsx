@@ -36,7 +36,7 @@ export default async function PlayerPropsPage({
             variant="spotlight"
             eyebrow="Markets"
             title="Available prop markets"
-            description="Each market shows the chosen book, line, odds, match quality, and why it stayed on watch, pass, or off the board."
+            description="A premium player-market view: line, odds, trust, and the reason each market stayed in or dropped out."
           >
             {viewModel.marketGroups.length === 0 && viewModel.emptyState ? (
               <EmptyState
@@ -67,23 +67,23 @@ export default async function PlayerPropsPage({
                     }
                   >
                     <div className="grid gap-2 md:grid-cols-2">
-                      <div className="rounded-[18px] border border-[var(--border-soft)] bg-[var(--surface-soft)] p-4">
+                      <div className="rounded-[16px] border border-[rgba(17,25,24,0.07)] bg-[rgba(243,235,222,0.72)] p-4">
                         <p className="text-sm font-medium text-slate-900">Source</p>
                         <p className="mt-1 text-xs leading-5 text-[var(--text-soft)]">
                           {market.source} • {market.freshness}
                         </p>
                       </div>
-                      <div className="rounded-[18px] border border-[var(--border-soft)] bg-[var(--surface-soft)] p-4">
+                      <div className="rounded-[16px] border border-[rgba(17,25,24,0.07)] bg-[rgba(243,235,222,0.72)] p-4">
                         <p className="text-sm font-medium text-slate-900">Match quality</p>
                         <p className="mt-1 text-xs leading-5 text-[var(--text-soft)]">
                           {market.matchQuality} identity {market.identityQuality.toLowerCase()}
                         </p>
                       </div>
-                      <div className="rounded-[18px] border border-[var(--border-soft)] bg-[var(--surface-soft)] p-4">
+                      <div className="rounded-[16px] border border-[rgba(17,25,24,0.07)] bg-[rgba(243,235,222,0.72)] p-4">
                         <p className="text-sm font-medium text-slate-900">Projection</p>
                         <p className="mt-1 text-xs leading-5 text-[var(--text-soft)]">{market.detail}</p>
                       </div>
-                      <div className="rounded-[18px] border border-[var(--border-soft)] bg-[var(--surface-soft)] p-4">
+                      <div className="rounded-[16px] border border-[rgba(17,25,24,0.07)] bg-[rgba(243,235,222,0.72)] p-4">
                         <p className="text-sm font-medium text-slate-900">Alternates</p>
                         <p className="mt-1 text-xs leading-5 text-[var(--text-soft)]">
                           {market.alternateCount > 0

@@ -56,21 +56,21 @@ export function SectionCard({
 
   const cardClass =
     variant === "spotlight"
-      ? "rounded-[34px] border border-[var(--border-soft)] bg-[linear-gradient(180deg,rgba(255,253,249,0.99),rgba(246,240,230,0.95))] p-6 shadow-[var(--shadow-soft)] sm:p-8"
+      ? "rounded-[34px] border border-[rgba(17,25,24,0.09)] bg-[linear-gradient(180deg,rgba(255,253,249,1),rgba(244,235,222,0.96))] p-6 shadow-[var(--shadow-soft)] sm:p-8"
       : variant === "dense"
         ? "rounded-[28px] border border-[var(--border-soft)] bg-[var(--surface-strong)] p-5 shadow-[0_6px_16px_rgba(24,33,32,0.03)] sm:p-6"
-        : "rounded-[30px] border border-[var(--border-soft)] bg-[var(--surface)] p-6 shadow-[0_8px_18px_rgba(24,33,32,0.035)] sm:p-7";
+        : "rounded-[30px] border border-[rgba(17,25,24,0.08)] bg-[var(--surface)] p-6 shadow-[0_8px_18px_rgba(24,33,32,0.03)] sm:p-7";
 
   return (
     <section className={cardClass}>
       {eyebrow ? (
-        <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[var(--accent-teal)]">
+        <p className="text-[10px] font-semibold uppercase tracking-[0.34em] text-[var(--accent-teal)]">
           {eyebrow}
         </p>
       ) : null}
-      <div className="mt-3 flex flex-wrap items-start justify-between gap-4 border-b border-[var(--border-soft)] pb-6">
+      <div className="mt-3 flex flex-wrap items-start justify-between gap-4 border-b border-[rgba(17,25,24,0.08)] pb-6">
         <div className="flex flex-col gap-2">
-          <h2 className={`${variant === "dense" ? "text-[1.38rem]" : "text-[1.62rem]"} font-sans leading-tight font-semibold tracking-[-0.04em] text-slate-950`}>
+          <h2 className={`${variant === "dense" ? "text-[1.35rem]" : "text-[1.65rem]"} font-sans leading-tight font-semibold tracking-[-0.045em] text-slate-950`}>
             {title}
           </h2>
           {description ? (
