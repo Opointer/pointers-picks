@@ -29,6 +29,18 @@ export default async function PlayerPropsPage({
         backHref="/props"
         backLabel="Back to props"
         variant="detail"
+        aside={
+          <div className="rounded-[24px] border border-[rgba(17,25,24,0.08)] bg-[rgba(255,252,247,0.78)] px-5 py-4 shadow-[0_8px_18px_rgba(17,25,24,0.03)]">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.32em] text-[var(--text-soft)]">
+              Trust state
+            </p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {viewModel.trustChips.slice(0, 3).map((chip) => (
+                <StatusChip key={`${chip.label}-${chip.tone}`} label={chip.label} tone={chip.tone} />
+              ))}
+            </div>
+          </div>
+        }
       />
       <div className="space-y-6">
         <div className="grid gap-6 xl:grid-cols-[1.14fr_0.86fr]">

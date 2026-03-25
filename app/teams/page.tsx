@@ -35,6 +35,16 @@ export default async function TeamsPage() {
         eyebrow="Teams"
         title="Team directory"
         description="League-wide team pages built from the live schedule, recent results, and current roster context."
+        aside={
+          <div className="rounded-[24px] border border-[rgba(17,25,24,0.08)] bg-[rgba(255,252,247,0.78)] px-5 py-4 shadow-[0_8px_18px_rgba(17,25,24,0.03)]">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.32em] text-[var(--text-soft)]">
+              League directory
+            </p>
+            <p className="mt-2 text-sm leading-6 text-[var(--text-muted)]">
+              Team profiles link straight into live context instead of acting like a static directory.
+            </p>
+          </div>
+        }
       />
       <SectionCard
         variant="spotlight"

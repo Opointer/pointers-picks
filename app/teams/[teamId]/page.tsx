@@ -66,6 +66,16 @@ export default async function TeamDetailPage({
         backHref="/teams"
         backLabel="Back to teams"
         variant="detail"
+        aside={
+          <div className="rounded-[24px] border border-[rgba(17,25,24,0.08)] bg-[rgba(255,252,247,0.78)] px-5 py-4 shadow-[0_8px_18px_rgba(17,25,24,0.03)]">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.32em] text-[var(--text-soft)]">
+              Team profile
+            </p>
+            <p className="mt-2 text-sm leading-6 text-[var(--text-muted)]">
+              Record, trends, roster context, and the next market lane all stay on one page.
+            </p>
+          </div>
+        }
       />
       <div className="space-y-6">
         <SectionCard
@@ -109,7 +119,7 @@ export default async function TeamDetailPage({
         <SectionCard
           eyebrow="Market context"
           title={viewModel.marketOverlay.title}
-          description={viewModel.marketOverlay.description}
+          description="If the next game is on the board, the market context stays attached to the team profile instead of living on a separate route."
           actions={
             <div className="flex flex-wrap gap-2">
               {viewModel.marketOverlay.chips.map((chip) => (

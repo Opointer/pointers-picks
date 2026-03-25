@@ -14,6 +14,17 @@ export default async function SystemStatusPage() {
         title="Feed status"
         description="Track provider health, coverage, freshness, and any live warnings affecting the board."
         variant="detail"
+        aside={
+          <div className="rounded-[24px] border border-[rgba(17,25,24,0.08)] bg-[rgba(255,252,247,0.78)] px-5 py-4 shadow-[0_8px_18px_rgba(17,25,24,0.03)]">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.32em] text-[var(--text-soft)]">
+              Operations
+            </p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              <StatusChip label={status.providerChip.label} tone={status.providerChip.tone} />
+              <StatusChip label={status.freshnessChip.label} tone={status.freshnessChip.tone} />
+            </div>
+          </div>
+        }
       />
       <div className="space-y-6">
         <SectionCard

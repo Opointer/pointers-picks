@@ -41,6 +41,16 @@ export default async function PlayersPage() {
         eyebrow="Players"
         title="Player directory"
         description="Live roster pages with direct routes into props when a scheduled game is available."
+        aside={
+          <div className="rounded-[24px] border border-[rgba(17,25,24,0.08)] bg-[rgba(255,252,247,0.78)] px-5 py-4 shadow-[0_8px_18px_rgba(17,25,24,0.03)]">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.32em] text-[var(--text-soft)]">
+              Active players
+            </p>
+            <p className="mt-2 text-sm leading-6 text-[var(--text-muted)]">
+              Players route into live props pages only when the slate can support a real destination.
+            </p>
+          </div>
+        }
       />
       <SectionCard
         variant="spotlight"

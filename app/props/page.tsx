@@ -21,6 +21,18 @@ export default async function PropsIndexPage({
         title="Props board"
         description="Move through the slate by date, open player pages quickly, and keep feed quality visible before you read a single market."
         variant="slate"
+        aside={
+          <div className="rounded-[24px] border border-[rgba(17,25,24,0.08)] bg-[rgba(255,252,247,0.78)] px-5 py-4 shadow-[0_8px_18px_rgba(17,25,24,0.03)]">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.32em] text-[var(--text-soft)]">
+              Board state
+            </p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {viewModel.trustChips.slice(0, 3).map((chip) => (
+                <StatusChip key={`${chip.label}-${chip.tone}`} label={chip.label} tone={chip.tone} />
+              ))}
+            </div>
+          </div>
+        }
       />
       <div className="space-y-6">
         <SectionCard

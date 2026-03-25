@@ -5,9 +5,12 @@ import { StatusChip } from "@/components/shared/status-chip";
 import { type DashboardOverviewViewModel } from "@/lib/view-models/dashboard";
 
 export function DashboardOverview({ viewModel }: { viewModel: DashboardOverviewViewModel }) {
+  const leadMetrics = viewModel.metrics.slice(0, 2);
+  const supportMetrics = [viewModel.metrics[2], viewModel.metrics[0]].filter(Boolean);
+
   return (
     <div className="space-y-12">
-      <section className="grid gap-5 xl:grid-cols-[1.36fr_0.64fr]">
+      <section className="grid gap-5 xl:grid-cols-[1.38fr_0.62fr]">
         <SectionCard
           variant="spotlight"
           eyebrow="Lead matchup"
@@ -15,7 +18,7 @@ export function DashboardOverview({ viewModel }: { viewModel: DashboardOverviewV
           description="The front page should move like a real desk: lead game first, feed context second, route depth right underneath."
         >
           {viewModel.leadGame ? (
-            <div className="grid gap-4 xl:grid-cols-[1.15fr_0.85fr]">
+            <div className="grid gap-5 xl:grid-cols-[1.18fr_0.82fr]">
               <DataCard
                 variant="feature"
                 eyebrow="On deck"
@@ -26,7 +29,7 @@ export function DashboardOverview({ viewModel }: { viewModel: DashboardOverviewV
                 actionLabel="Open matchup"
               />
               <div className="grid gap-4">
-                {viewModel.metrics.slice(0, 2).map((metric) => (
+                {leadMetrics.map((metric) => (
                   <DataCard
                     key={metric.label}
                     variant="stat"
@@ -80,7 +83,7 @@ export function DashboardOverview({ viewModel }: { viewModel: DashboardOverviewV
       </section>
 
       <section className="grid gap-4 xl:grid-cols-3">
-        {viewModel.metrics.slice(2).concat(viewModel.metrics.slice(0, 1)).map((metric, index) => (
+        {supportMetrics.map((metric, index) => (
           <DataCard
             key={`${metric.label}-${index}`}
             variant="stat"
@@ -89,6 +92,12 @@ export function DashboardOverview({ viewModel }: { viewModel: DashboardOverviewV
             description={metric.detail}
           />
         ))}
+        <DataCard
+          variant="context"
+          eyebrow="Navigation"
+          title="Open the board"
+          description="Use the front page to move quickly into live games, team profiles, and player props without losing feed context."
+        />
       </section>
 
       <section className="grid gap-7 xl:grid-cols-2">

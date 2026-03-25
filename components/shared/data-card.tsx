@@ -14,7 +14,7 @@ export interface DataCardProps {
   footer?: ReactNode;
   href?: string;
   actionLabel?: string;
-  variant?: "default" | "stat" | "feature" | "compact";
+  variant?: "default" | "stat" | "feature" | "compact" | "context";
   state?: ViewState;
   emptyTitle?: string;
   emptyDescription?: string;
@@ -44,6 +44,8 @@ export function DataCard({
       ? "rounded-[32px] border border-[rgba(17,25,24,0.12)] bg-[linear-gradient(180deg,rgba(255,253,249,1),rgba(246,236,223,0.97))] p-8 shadow-[0_26px_52px_rgba(17,25,24,0.09)]"
       : variant === "stat"
         ? "rounded-[20px] border border-[rgba(17,25,24,0.08)] bg-[var(--surface-strong)] p-4 shadow-[0_4px_10px_rgba(17,25,24,0.025)]"
+        : variant === "context"
+          ? "rounded-[22px] border border-[rgba(17,25,24,0.06)] bg-[rgba(255,252,247,0.66)] p-4 shadow-[0_2px_8px_rgba(17,25,24,0.016)]"
         : variant === "compact"
           ? "rounded-[20px] border border-[rgba(17,25,24,0.08)] bg-[var(--surface-strong)] p-4 shadow-[0_4px_10px_rgba(17,25,24,0.025)]"
           : "rounded-[26px] border border-[rgba(17,25,24,0.07)] bg-[rgba(255,252,247,0.8)] p-6 shadow-[0_4px_10px_rgba(17,25,24,0.018)]";
@@ -100,7 +102,7 @@ export function DataCard({
               {eyebrow}
             </p>
           ) : null}
-          <h3 className={`${variant === "stat" ? "font-sans text-[1.75rem] font-semibold tracking-[-0.04em]" : variant === "feature" ? "text-[2.65rem] font-semibold tracking-[-0.055em]" : variant === "compact" ? "font-sans text-[1.2rem] font-semibold tracking-[-0.035em]" : "font-sans text-[1.42rem] font-semibold tracking-[-0.04em]"} mt-3 leading-tight text-slate-950`}>
+          <h3 className={`${variant === "stat" ? "font-sans text-[1.75rem] font-semibold tracking-[-0.04em]" : variant === "feature" ? "text-[2.65rem] font-semibold tracking-[-0.055em]" : variant === "compact" ? "font-sans text-[1.2rem] font-semibold tracking-[-0.035em]" : variant === "context" ? "font-sans text-[1.02rem] font-semibold tracking-[-0.02em]" : "font-sans text-[1.42rem] font-semibold tracking-[-0.04em]"} mt-3 leading-tight text-slate-950`}>
             {title}
           </h3>
           {subtitle ? <p className="mt-1.5 text-sm leading-6 text-[var(--accent-ink)]">{subtitle}</p> : null}

@@ -53,6 +53,18 @@ export default async function MatchupPage({
         backHref="/games"
         backLabel="Back to slate"
         variant="detail"
+        aside={
+          <div className="rounded-[24px] border border-[rgba(17,25,24,0.08)] bg-[rgba(255,252,247,0.78)] px-5 py-4 shadow-[0_8px_18px_rgba(17,25,24,0.03)]">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.32em] text-[var(--text-soft)]">
+              Market lane
+            </p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {marketViewModel.chips.slice(0, 3).map((chip) => (
+                <StatusChip key={chip.label} label={chip.label} tone={chip.tone} />
+              ))}
+            </div>
+          </div>
+        }
       />
       <div className="space-y-6">
         <div className="grid gap-6 xl:grid-cols-[1.18fr_0.82fr]">
@@ -109,7 +121,7 @@ export default async function MatchupPage({
             variant="dense"
             eyebrow="Markets"
             title={marketViewModel.sectionTitle}
-            description={marketViewModel.sectionDescription}
+            description="The live market lane keeps spread, total, and moneyline context visible without taking over the page."
             actions={
               <div className="flex flex-wrap gap-2">
                 {marketViewModel.chips.map((chip) => (

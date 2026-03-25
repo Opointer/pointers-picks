@@ -9,6 +9,7 @@ export function PageHeader({
   backLabel,
   actions,
   variant = "default",
+  aside,
 }: {
   eyebrow: string;
   title: string;
@@ -17,6 +18,7 @@ export function PageHeader({
   backLabel?: string;
   actions?: ReactNode;
   variant?: "default" | "slate" | "detail";
+  aside?: ReactNode;
 }) {
   const variantClass =
     variant === "slate"
@@ -45,13 +47,16 @@ export function PageHeader({
           </div>
           {actions}
         </div>
-        <div className="flex flex-col gap-4">
-          <h1 className="max-w-5xl text-[3rem] leading-[0.9] font-semibold tracking-[-0.06em] text-slate-950 sm:text-[4.35rem]">
-            {title}
-          </h1>
-          <p className="max-w-[44rem] text-[1rem] leading-7 text-[var(--text-muted)] sm:text-[1.05rem]">
-            {description}
-          </p>
+        <div className={`grid gap-6 ${aside ? "xl:grid-cols-[1.25fr_0.75fr] xl:items-end" : ""}`}>
+          <div className="flex flex-col gap-4">
+            <h1 className="max-w-5xl text-[3rem] leading-[0.9] font-semibold tracking-[-0.06em] text-slate-950 sm:text-[4.35rem]">
+              {title}
+            </h1>
+            <p className="max-w-[44rem] text-[1rem] leading-7 text-[var(--text-muted)] sm:text-[1.05rem]">
+              {description}
+            </p>
+          </div>
+          {aside ? <div className="min-w-0">{aside}</div> : null}
         </div>
       </div>
     </header>
