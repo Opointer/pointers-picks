@@ -1,0 +1,144 @@
+@import "tailwindcss";
+
+:root {
+  --font-sans: var(--font-body);
+  --background: #f4efe7;
+  --foreground: #141b1a;
+  --surface: rgba(255, 252, 247, 0.97);
+  --surface-strong: rgba(255, 253, 249, 1);
+  --surface-soft: #f6f0e6;
+  --surface-inset: #eee6da;
+  --border-soft: rgba(24, 33, 32, 0.11);
+  --border-strong: rgba(24, 33, 32, 0.16);
+  --accent-teal: #0d5c63;
+  --accent-teal-strong: #083e44;
+  --accent-teal-soft: #d7eceb;
+  --accent-amber: #9b6a21;
+  --accent-amber-soft: #f4e6c8;
+  --danger-soft: #f4e1e1;
+  --text-muted: #5f6966;
+  --text-soft: #7b8480;
+  --shadow-soft: 0 18px 40px rgba(24, 33, 32, 0.06);
+  --shadow-subtle: 0 8px 18px rgba(24, 33, 32, 0.035);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-body);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  min-height: 100vh;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings:
+    "liga" 1,
+    "kern" 1;
+}
+
+::selection {
+  background: rgba(13, 92, 99, 0.14);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display), serif;
+}
+
+p,
+li,
+td,
+th,
+label,
+input,
+select,
+button {
+  font-family: var(--font-body), sans-serif;
+}
+
+main,
+section,
+article {
+  min-width: 0;
+}
+
+.ui-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-soft);
+  background: rgba(255, 252, 247, 0.9);
+  padding: 0.7rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #263130;
+  transition:
+    background 150ms ease,
+    border-color 150ms ease,
+    transform 150ms ease,
+    box-shadow 150ms ease;
+}
+
+.ui-button:hover {
+  border-color: var(--border-strong);
+  background: rgba(255, 253, 249, 1);
+  box-shadow: var(--shadow-subtle);
+}
+
+.ui-button:focus-visible {
+  outline: 2px solid rgba(13, 92, 99, 0.18);
+  outline-offset: 2px;
+}
+
+.ui-button-accent {
+  border-color: rgba(13, 92, 99, 0.14);
+  background: var(--accent-teal-soft);
+  color: var(--accent-teal-strong);
+}
+
+.ui-button-accent:hover {
+  border-color: rgba(13, 92, 99, 0.2);
+  background: #cce4e2;
+}
+
+.ui-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  transition:
+    color 150ms ease,
+    transform 150ms ease;
+}
+
+.ui-back-link:hover {
+  color: var(--accent-teal-strong);
+  transform: translateX(-1px);
+}
