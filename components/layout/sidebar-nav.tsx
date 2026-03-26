@@ -26,7 +26,7 @@ export function SidebarNav() {
           </Link>
 
           <p className="max-w-[28rem] text-sm leading-6 text-[var(--text-muted)]">
-            Real-time NBA board coverage with premium routes into games, props, team profiles, and live market context.
+            NBA games, props, teams, and player pages in one sharp board.
           </p>
         </div>
 

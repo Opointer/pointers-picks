@@ -30,11 +30,11 @@ export default async function PlayerPropsPage({
         backLabel="Back to props"
         variant="detail"
         aside={
-          <div className="rounded-[26px] border border-[rgba(16,23,23,0.08)] bg-[linear-gradient(180deg,rgba(255,255,255,0.88),rgba(239,247,243,0.78))] px-5 py-4 shadow-[var(--shadow-subtle)]">
-            <p className="text-[10px] font-extrabold uppercase tracking-[0.32em] text-[var(--text-soft)]">
-              Trust state
+          <div className="rounded-[24px] border border-[rgba(16,23,23,0.08)] bg-[rgba(255,255,255,0.84)] px-4 py-4 shadow-[var(--shadow-subtle)]">
+            <p className="text-[10px] font-extrabold uppercase tracking-[0.28em] text-[var(--text-soft)]">
+              Now
             </p>
-            <div className="mt-3 flex flex-wrap gap-2">
+            <div className="mt-2 flex flex-wrap gap-2">
               {viewModel.trustChips.slice(0, 3).map((chip) => (
                 <StatusChip key={`${chip.label}-${chip.tone}`} label={chip.label} tone={chip.tone} />
               ))}
@@ -48,7 +48,7 @@ export default async function PlayerPropsPage({
             variant="spotlight"
             eyebrow="Markets"
             title="Available prop markets"
-            description="A premium player-market view: line, odds, trust, and the reason each market stayed in or dropped out."
+            description="Line, odds, and the case for each posted market."
           >
             {viewModel.marketGroups.length === 0 && viewModel.emptyState ? (
               <EmptyState
@@ -92,7 +92,7 @@ export default async function PlayerPropsPage({
                           </div>
                         </div>
                         <p className="mt-4 text-sm leading-6 text-white/72">
-                          Line, market trust, and projection context stay in one premium card without burying the decision state.
+                          Line, source, and projection context in one card.
                         </p>
                       </div>
                       <div className="grid gap-2 md:grid-cols-2">
@@ -132,7 +132,7 @@ export default async function PlayerPropsPage({
             variant="dense"
             eyebrow="Trust"
             title="Market trust"
-            description="Source, freshness, and pass states stay visible so the page never looks cleaner than the underlying market."
+            description="Source and market state at a glance."
           >
             <div className="flex flex-wrap gap-2">
               {viewModel.trustChips.map((chip) => (
@@ -158,7 +158,7 @@ export default async function PlayerPropsPage({
           variant="dense"
           eyebrow="Availability log"
           title="What stayed off the board"
-          description="Unavailable, stale, one-sided, and alternate markets stay visible here so the page explains what dropped out."
+          description="Markets that did not make the board."
         >
           <DataTable
             columns={[

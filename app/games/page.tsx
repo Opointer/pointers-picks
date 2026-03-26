@@ -21,13 +21,13 @@ export default async function GamesPage({
     <>
       <PageHeader
         eyebrow="Games"
-        title="The live slate"
-        description="A cleaner scoreboard for the full NBA board with sharper market context, clearer timing, and faster routes into matchup pages."
+        title="Tonight's slate"
+        description="Tip times, odds, and the fastest path into each matchup."
         variant="slate"
         aside={
-          <div className="rounded-[26px] border border-[rgba(16,23,23,0.08)] bg-[linear-gradient(180deg,rgba(255,255,255,0.88),rgba(239,247,243,0.78))] px-5 py-4 shadow-[var(--shadow-subtle)]">
-            <p className="text-[10px] font-extrabold uppercase tracking-[0.32em] text-[var(--text-soft)]">
-              Board state
+          <div className="rounded-[24px] border border-[rgba(16,23,23,0.08)] bg-[rgba(255,255,255,0.84)] px-4 py-4 shadow-[var(--shadow-subtle)]">
+            <p className="text-[10px] font-extrabold uppercase tracking-[0.28em] text-[var(--text-soft)]">
+              Slate
             </p>
             <p className="mt-2 text-sm leading-6 text-[var(--text-muted)]">{viewModel.slateSummary}</p>
           </div>
@@ -36,9 +36,9 @@ export default async function GamesPage({
 
       <SectionCard
         variant="spotlight"
-        eyebrow="Slate browser"
+        eyebrow="Date"
         title={viewModel.sectionTitle}
-        description="Move day to day, keep tip times and market context tight, and open the next matchup without losing the state of the board."
+        description="Move through the schedule and open the next game."
         actions={
           <div className="flex flex-wrap gap-2">
             <Link href={viewModel.previousHref} className="ui-button">
@@ -65,16 +65,16 @@ export default async function GamesPage({
           <div className="grid gap-3 sm:grid-cols-2">
             <div className="rounded-[18px] border border-[rgba(16,23,23,0.08)] bg-[rgba(242,234,223,0.76)] px-4 py-3">
               <p className="text-[10px] font-extrabold uppercase tracking-[0.22em] text-[var(--text-soft)]">
-                Daily read
+                Slate note
               </p>
               <p className="mt-2 text-sm leading-6 text-[var(--text-muted)]">{viewModel.slateSummary}</p>
             </div>
             <div className="rounded-[18px] border border-[rgba(16,23,23,0.08)] bg-[rgba(216,235,228,0.48)] px-4 py-3">
               <p className="text-[10px] font-extrabold uppercase tracking-[0.22em] text-[var(--text-soft)]">
-                Board format
+                Format
               </p>
               <p className="mt-2 text-sm leading-6 text-[var(--text-muted)]">
-                Zero-game dates, partial feeds, and full slates all stay readable in the same layout.
+                One board for full slates, light nights, and empty dates.
               </p>
             </div>
           </div>
@@ -99,7 +99,7 @@ export default async function GamesPage({
                 <div className="grid gap-4 lg:grid-cols-[0.72fr_1.28fr]">
                   <div className="rounded-[22px] border border-[rgba(16,23,23,0.08)] bg-[rgba(20,52,51,0.95)] px-5 py-4 text-white">
                     <p className="text-[10px] font-extrabold uppercase tracking-[0.28em] text-white/70">
-                      Lead board view
+                      Lead matchup
                     </p>
                     <div className="mt-4 space-y-3">
                       <div className="h-2 rounded-full bg-white/12">
@@ -113,7 +113,7 @@ export default async function GamesPage({
                       </div>
                     </div>
                     <p className="mt-4 text-sm leading-6 text-white/72">
-                      A premium board card with tip time, market strip, and the fastest route into the full matchup page.
+                      Start with the top game, then work the rest of the board.
                     </p>
                   </div>
                   <div className="grid gap-3 sm:grid-cols-3">

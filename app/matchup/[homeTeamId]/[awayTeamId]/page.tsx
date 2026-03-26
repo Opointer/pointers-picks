@@ -54,11 +54,11 @@ export default async function MatchupPage({
         backLabel="Back to slate"
         variant="detail"
         aside={
-          <div className="rounded-[26px] border border-[rgba(16,23,23,0.08)] bg-[linear-gradient(180deg,rgba(255,255,255,0.88),rgba(239,247,243,0.78))] px-5 py-4 shadow-[var(--shadow-subtle)]">
-            <p className="text-[10px] font-extrabold uppercase tracking-[0.32em] text-[var(--text-soft)]">
-              Market lane
+          <div className="rounded-[24px] border border-[rgba(16,23,23,0.08)] bg-[rgba(255,255,255,0.84)] px-4 py-4 shadow-[var(--shadow-subtle)]">
+            <p className="text-[10px] font-extrabold uppercase tracking-[0.28em] text-[var(--text-soft)]">
+              Markets
             </p>
-            <div className="mt-3 flex flex-wrap gap-2">
+            <div className="mt-2 flex flex-wrap gap-2">
               {marketViewModel.chips.slice(0, 3).map((chip) => (
                 <StatusChip key={chip.label} label={chip.label} tone={chip.tone} />
               ))}
@@ -72,7 +72,7 @@ export default async function MatchupPage({
             variant="spotlight"
             eyebrow="Matchup"
             title="Game snapshot"
-            description="A feature view of the game: model range, recent form, and the cleanest high-level read before you go deeper."
+            description="The quick read before you dig into the game."
           >
             <div className="grid gap-4 xl:grid-cols-[1.15fr_0.85fr]">
               <DataCard
@@ -98,7 +98,7 @@ export default async function MatchupPage({
                       </div>
                     </div>
                     <p className="mt-4 text-sm leading-6 text-white/72">
-                      Confidence, projection range, and recent sample stay visible without turning the page into a model dump.
+                      Confidence, range, and recent form in one read.
                     </p>
                   </div>
                   <div className="grid gap-3 md:grid-cols-2">
@@ -142,7 +142,7 @@ export default async function MatchupPage({
             variant="dense"
             eyebrow="Markets"
             title={marketViewModel.sectionTitle}
-            description="The live market lane keeps spread, total, and moneyline context visible without taking over the page."
+            description="Spread, total, and moneyline at a glance."
             actions={
               <div className="flex flex-wrap gap-2">
                 {marketViewModel.chips.map((chip) => (
@@ -169,7 +169,7 @@ export default async function MatchupPage({
         <SectionCard
           eyebrow="Comparisons"
           title="Side-by-side context"
-          description="The table keeps both sides readable at a glance without dropping into a spreadsheet feel."
+          description="The team table, side by side."
         >
           <DataTable
             columns={comparisonColumns}
@@ -185,7 +185,7 @@ export default async function MatchupPage({
             variant="dense"
             eyebrow="Factors"
             title="What is driving the game"
-            description="The strongest factors stay high-level and readable instead of sinking into raw model detail."
+            description="The biggest edges in this matchup."
           >
             {detailViewModel.factorCards.length === 0 ? (
               <EmptyState
@@ -217,7 +217,7 @@ export default async function MatchupPage({
           <SectionCard
             eyebrow="Related props"
             title="Player props from this game"
-            description="Use the matchup page as the clean handoff into player-level props for the same game."
+            description="Posted player pages tied to this game."
           >
             {detailViewModel.relatedProps.length === 0 ? (
               <EmptyState

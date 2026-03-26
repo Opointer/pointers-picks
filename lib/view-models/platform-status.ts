@@ -45,7 +45,7 @@ function formatTimestamp(value: string | undefined): string {
 function buildUnavailableViewModel(message: string): PlatformStatusViewModel {
   return {
     headline: "Data unavailable",
-    summary: "Live provider health could not be loaded.",
+    summary: "Provider health could not be loaded.",
     providerChip: { label: "Unavailable", tone: "danger" },
     freshnessChip: { label: "Feed refresh missing", tone: "warning" },
     fallbackChip: { label: "Coverage unavailable", tone: "danger" },
@@ -128,30 +128,30 @@ export async function getPlatformStatusViewModel(): Promise<PlatformStatusViewMo
           label: "Teams",
           value: `${teams.length}`,
           detail: hasDomainCoverage
-            ? "Live team identities are available."
-            : "The live NBA teams feed could not be loaded.",
+            ? "Teams feed is up."
+            : "Teams feed could not be loaded.",
         },
         {
           label: "Upcoming games",
           value: `${summary.upcomingGames}`,
           detail: hasGameOdds
-            ? `${summary.gameOddsCount} games currently have odds overlays.`
-            : "Schedule data is live, but odds overlays are not posted.",
+            ? `${summary.gameOddsCount} games have odds.`
+            : "Schedule is up, but odds are not posted.",
         },
         {
           label: "Props markets",
           value: `${summary.propMarketsCount}`,
           detail: hasProps
-            ? `${summary.playersWithProps} players currently have tracked props.`
-            : "Player props are not posted or could not be matched for the current slate.",
+            ? `${summary.playersWithProps} players have posted props.`
+            : "Props are not posted or could not be matched.",
         },
         {
           label: "Warnings",
           value: `${summary.warningCount}`,
           detail:
             summary.warningCount > 0
-              ? "Warnings stay explicit instead of being hidden behind softer fallback messaging."
-              : "No feed warnings are affecting the active product.",
+              ? "Active feed issues are listed below."
+              : "No active feed warnings.",
         },
       ],
     };

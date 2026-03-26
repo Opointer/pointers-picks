@@ -93,7 +93,7 @@ function getStatusChip(gameOdds: GameOdds | undefined): PlatformStatusChipViewMo
 
 function getStatusSummary(gameOdds: GameOdds | undefined): string {
   if (!gameOdds?.fetchMeta) {
-    return "Live market odds are unavailable for this game.";
+    return "Odds not posted.";
   }
 
   const lineTimestamp = gameOdds.spread.home.timestamp ?? gameOdds.fetchMeta.fetchedAt;
@@ -158,10 +158,10 @@ function buildCardDescription({
   homeTeam: Team;
 }): string {
   if (!gameOdds?.fetchMeta) {
-    return `${awayTeam.abbreviation} at ${homeTeam.abbreviation} is on the slate, but no verified market data is posted yet.`;
+    return `${awayTeam.abbreviation} at ${homeTeam.abbreviation}. Odds are not posted yet.`;
   }
 
-  return `${awayTeam.abbreviation} at ${homeTeam.abbreviation} with live spread, total, and moneyline context in one card.`;
+  return `${awayTeam.abbreviation} at ${homeTeam.abbreviation}. Spread, total, and moneyline in one read.`;
 }
 
 export async function getGamesPageViewModel(selectedDateParam?: string): Promise<GamesPageViewModel> {
@@ -223,8 +223,7 @@ export async function getGamesPageViewModel(selectedDateParam?: string): Promise
           ? `${cards.length} game${cards.length > 1 ? "s" : ""} scheduled for ${formatCentralDateLabel(selectedDate)}.`
           : `No NBA games are scheduled for ${formatCentralDateLabel(selectedDate)}.`,
       sectionTitle: cards.length > 0 ? "Daily slate" : "No games scheduled",
-      sectionDescription:
-        "Browse the board by date. Each card keeps tip time, live market context, and route access in one place.",
+      sectionDescription: "Open the board by date.",
       cards,
       emptyState:
         cards.length === 0
@@ -242,10 +241,9 @@ export async function getGamesPageViewModel(selectedDateParam?: string): Promise
       todayHref: `/games?date=${toCentralDateKey(new Date())}`,
       previousHref: `/games?date=${shiftDateKey(selectedDate, -1)}`,
       nextHref: `/games?date=${shiftDateKey(selectedDate, 1)}`,
-      slateSummary: "Live slate data could not be loaded.",
+      slateSummary: "The slate could not be loaded.",
       sectionTitle: "Slate unavailable",
-      sectionDescription:
-        "The live schedule could not be loaded for this date.",
+      sectionDescription: "The schedule could not be loaded for this date.",
       cards: [],
       emptyState: {
         title: "Slate unavailable",

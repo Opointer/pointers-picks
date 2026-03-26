@@ -74,7 +74,7 @@ export async function getPropsIndexViewModel(selectedDateParam?: string): Promis
         players.length === 0
           ? {
               title: "No player markets posted",
-              description: "The selected date has no verified player-market pages to open yet.",
+              description: "There are no verified player pages to open for this slate yet.",
             }
           : undefined,
     };
@@ -94,12 +94,12 @@ export async function getPropsIndexViewModel(selectedDateParam?: string): Promis
       warnings: [
         error instanceof Error
           ? error.message
-          : "The live props index could not be built.",
+          : "The props board could not be loaded.",
       ],
       players: [],
       emptyState: {
         title: "Props board unavailable",
-        description: "The live props directory could not be loaded for the selected date.",
+        description: "The props board could not be loaded for the selected date.",
       },
     };
   }

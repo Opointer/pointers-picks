@@ -42,12 +42,12 @@ export async function getDashboardOverviewViewModel(): Promise<DashboardOverview
       {
         label: "Games tonight",
         value: `${games.cards.length}`,
-        detail: games.cards.length > 0 ? "Live slate loaded for today." : "No scheduled games tonight.",
+        detail: games.cards.length > 0 ? "Board is up tonight." : "No games tonight.",
       },
       {
         label: "Props pages",
         value: `${props.players.length}`,
-        detail: props.players.length > 0 ? "Live player pages are available." : "No live player pages are available.",
+        detail: props.players.length > 0 ? "Posted player pages are up." : "No posted player pages yet.",
       },
       {
         label: "Feed state",
@@ -82,8 +82,8 @@ export async function getDashboardOverviewViewModel(): Promise<DashboardOverview
     emptyState:
       games.cards.length === 0 && props.players.length === 0
         ? {
-            title: "Live slate unavailable",
-            description: "There are no live games or player pages available to feature right now.",
+            title: "Nothing on tonight",
+            description: "There are no games or posted player pages to feature right now.",
           }
         : undefined,
   };

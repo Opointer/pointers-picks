@@ -36,7 +36,7 @@ export function StatusChip({
 
   return (
     <span
-      className={`inline-flex items-center rounded-full border px-3 py-1.5 text-[9px] font-extrabold uppercase tracking-[0.14em] ${toneClass}`}
+      className={`inline-flex items-center rounded-full border px-2.5 py-1 text-[8px] font-extrabold uppercase tracking-[0.12em] ${toneClass}`}
     >
       {label}
     </span>

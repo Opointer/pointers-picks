@@ -12,14 +12,14 @@ export default async function SystemStatusPage() {
       <PageHeader
         eyebrow="System Status"
         title="Feed status"
-        description="Track provider health, coverage, freshness, and any live warnings affecting the board."
+        description="Provider health and active issues affecting the board."
         variant="detail"
         aside={
-          <div className="rounded-[26px] border border-[rgba(16,23,23,0.08)] bg-[linear-gradient(180deg,rgba(255,255,255,0.88),rgba(239,247,243,0.78))] px-5 py-4 shadow-[var(--shadow-subtle)]">
-            <p className="text-[10px] font-extrabold uppercase tracking-[0.32em] text-[var(--text-soft)]">
-              Operations
+          <div className="rounded-[24px] border border-[rgba(16,23,23,0.08)] bg-[rgba(255,255,255,0.84)] px-4 py-4 shadow-[var(--shadow-subtle)]">
+            <p className="text-[10px] font-extrabold uppercase tracking-[0.28em] text-[var(--text-soft)]">
+              Now
             </p>
-            <div className="mt-3 flex flex-wrap gap-2">
+            <div className="mt-2 flex flex-wrap gap-2">
               <StatusChip label={status.providerChip.label} tone={status.providerChip.tone} />
               <StatusChip label={status.freshnessChip.label} tone={status.freshnessChip.tone} />
             </div>

@@ -40,23 +40,23 @@ export default async function PlayersPage() {
       <PageHeader
         eyebrow="Players"
         title="Player directory"
-        description="Live roster pages with direct routes into props only when a verified player market is posted."
+        description="Active players, with props links only when a posted market exists."
         aside={
-          <div className="rounded-[26px] border border-[rgba(16,23,23,0.08)] bg-[linear-gradient(180deg,rgba(255,255,255,0.88),rgba(239,247,243,0.78))] px-5 py-4 shadow-[var(--shadow-subtle)]">
-            <p className="text-[10px] font-extrabold uppercase tracking-[0.32em] text-[var(--text-soft)]">
+          <div className="rounded-[24px] border border-[rgba(16,23,23,0.08)] bg-[rgba(255,255,255,0.84)] px-4 py-4 shadow-[var(--shadow-subtle)]">
+            <p className="text-[10px] font-extrabold uppercase tracking-[0.28em] text-[var(--text-soft)]">
               Active players
             </p>
             <p className="mt-2 text-sm leading-6 text-[var(--text-muted)]">
-              Players route into live props pages only when a verified market destination exists.
+              Props links only appear when a real player page is available.
             </p>
           </div>
         }
       />
       <SectionCard
         variant="spotlight"
-        eyebrow="League view"
+        eyebrow="League"
         title="Active rosters"
-        description="Players link into props pages only when there is a real scheduled game to open."
+        description="Open player pages when there is a real market behind them."
       >
         <DataTable
           columns={columns}
@@ -65,7 +65,7 @@ export default async function PlayersPage() {
           emptyTitle={viewModel.emptyState?.title ?? "No players available"}
           emptyDescription={
             viewModel.emptyState?.description ??
-            "The live player directory could not be loaded."
+            "The player directory could not be loaded."
           }
         />
       </SectionCard>

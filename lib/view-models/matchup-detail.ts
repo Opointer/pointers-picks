@@ -99,8 +99,8 @@ export async function getMatchupDetailViewModel(
             title: page.title,
             subtitle: page.subtitle,
             rationale: page.detail,
-            line: "Live board",
-            matchQuality: "Verified route",
+            line: "Posted market",
+            matchQuality: "Verified page",
             href: page.href,
           }))
       : [];
@@ -109,8 +109,7 @@ export async function getMatchupDetailViewModel(
       header: {
         eyebrow: "Matchup",
         title: `${awayName} at ${homeName}`,
-        description:
-          "Team context, live market framing, and model output all stay on one page for this game.",
+        description: "Team context, market view, and model read in one place.",
       },
       summaryCard: {
         title: analysis.model.summary,

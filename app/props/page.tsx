@@ -19,14 +19,14 @@ export default async function PropsIndexPage({
       <PageHeader
         eyebrow="Props"
         title="Props board"
-        description="Move through the slate by date, open player pages quickly, and keep live feed quality visible before you read a single market."
+        description="Posted player markets for the slate, grouped by date."
         variant="slate"
         aside={
-          <div className="rounded-[26px] border border-[rgba(16,23,23,0.08)] bg-[linear-gradient(180deg,rgba(255,255,255,0.88),rgba(239,247,243,0.78))] px-5 py-4 shadow-[var(--shadow-subtle)]">
-            <p className="text-[10px] font-extrabold uppercase tracking-[0.32em] text-[var(--text-soft)]">
-              Board state
+          <div className="rounded-[24px] border border-[rgba(16,23,23,0.08)] bg-[rgba(255,255,255,0.84)] px-4 py-4 shadow-[var(--shadow-subtle)]">
+            <p className="text-[10px] font-extrabold uppercase tracking-[0.28em] text-[var(--text-soft)]">
+              Now
             </p>
-            <div className="mt-3 flex flex-wrap gap-2">
+            <div className="mt-2 flex flex-wrap gap-2">
               {viewModel.trustChips.slice(0, 3).map((chip) => (
                 <StatusChip key={`${chip.label}-${chip.tone}`} label={chip.label} tone={chip.tone} />
               ))}
@@ -37,9 +37,9 @@ export default async function PropsIndexPage({
       <div className="space-y-6">
         <SectionCard
           variant="spotlight"
-          eyebrow="Date view"
+          eyebrow="Date"
           title={viewModel.selectedDateLabel}
-          description="A clean daily board for moving from the slate into player-level props pages."
+          description="Open posted player pages for this slate."
           actions={
             <div className="flex flex-wrap gap-2">
               <Link href={viewModel.previousHref} className="ui-button">
@@ -57,7 +57,7 @@ export default async function PropsIndexPage({
           <div className="grid gap-4 lg:grid-cols-[0.75fr_1.25fr]">
             <div className="rounded-[22px] border border-[rgba(16,23,23,0.08)] bg-[rgba(20,52,51,0.95)] px-5 py-4 text-white">
               <p className="text-[10px] font-extrabold uppercase tracking-[0.26em] text-white/70">
-                Props coverage
+                Posted markets
               </p>
               <div className="mt-4 space-y-3">
                 <div className="h-2 rounded-full bg-white/12">
@@ -68,35 +68,35 @@ export default async function PropsIndexPage({
                 </div>
               </div>
               <p className="mt-4 text-sm leading-6 text-white/72">
-                The props desk is built to get you into the right player page quickly, with feed trust visible before you commit.
+                Player pages only show up here when there is a real market behind them.
               </p>
             </div>
             <div>
               <div className="flex flex-wrap gap-2">
-              {viewModel.trustChips.map((chip) => (
-                <StatusChip key={`${chip.label}-${chip.tone}`} label={chip.label} tone={chip.tone} />
-              ))}
+                {viewModel.trustChips.map((chip) => (
+                  <StatusChip key={`${chip.label}-${chip.tone}`} label={chip.label} tone={chip.tone} />
+                ))}
               </div>
-          {viewModel.warnings.length > 0 ? (
-            <div className="mt-5 space-y-2">
-              {viewModel.warnings.map((warning) => (
-                <p
-                  key={warning}
-                  className="rounded-[20px] border border-[var(--border-soft)] bg-[var(--surface-soft)] px-4 py-3 text-sm leading-6 text-[var(--text-muted)]"
-                >
-                  {warning}
-                </p>
-              ))}
-            </div>
-          ) : null}
+              {viewModel.warnings.length > 0 ? (
+                <div className="mt-5 space-y-2">
+                  {viewModel.warnings.slice(0, 1).map((warning) => (
+                    <p
+                      key={warning}
+                      className="rounded-[20px] border border-[var(--border-soft)] bg-[var(--surface-soft)] px-4 py-3 text-sm leading-6 text-[var(--text-muted)]"
+                    >
+                      {warning}
+                    </p>
+                  ))}
+                </div>
+              ) : null}
             </div>
           </div>
         </SectionCard>
 
         <SectionCard
-          eyebrow="Available pages"
+          eyebrow="Players"
           title="Players with posted markets"
-          description="This board only surfaces player pages with verified live markets behind them."
+          description="Only verified player pages show up here."
         >
           {viewModel.players.length === 0 && viewModel.emptyState ? (
             <EmptyState title={viewModel.emptyState.title} description={viewModel.emptyState.description} />
@@ -107,9 +107,8 @@ export default async function PropsIndexPage({
                   key={player.id}
                   variant="compact"
                   href={player.href}
-                  eyebrow="Player page"
+                  eyebrow={player.subtitle}
                   title={player.title}
-                  subtitle={player.subtitle}
                   description={player.detail}
                   actionLabel="Open props page"
                 />

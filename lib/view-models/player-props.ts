@@ -135,7 +135,7 @@ function buildUnavailableViewModel(message: string): PlayerPropsPageViewModel {
     header: {
       eyebrow: "Props",
       title: "Props feed unavailable",
-      description: "Live player markets could not be loaded for this page.",
+      description: "Player markets could not be loaded for this page.",
     },
     trustChips: [
       { label: "Unavailable", tone: "danger" },
@@ -174,7 +174,7 @@ export async function getPlayerPropsPageViewModel({
         header: {
           eyebrow: "Props",
           title: "Player not found",
-          description: "The requested player or game is not available in the live schedule.",
+          description: "The requested player or game is not on the current slate.",
         },
         trustChips: [],
         marketGroups: [],
@@ -274,7 +274,7 @@ export async function getPlayerPropsPageViewModel({
       header: {
         eyebrow: "Props",
         title: `${result.header.player.firstName} ${result.header.player.lastName}`,
-        description: `${result.header.team.abbreviation} vs ${result.header.opponent.abbreviation} • ${result.header.gameTime}. Live props stay visible with explicit freshness and trust states.`,
+        description: `${result.header.team.abbreviation} vs ${result.header.opponent.abbreviation} • ${result.header.gameTime}`,
       },
       trustChips,
       marketGroups,
@@ -293,12 +293,12 @@ export async function getPlayerPropsPageViewModel({
               description: hasFeedFailure
                 ? "The live props feed failed before a trusted player market page could be built."
                 : hasMatchedGameWarning
-                  ? "This game does not have a matched live props event from the current books."
+                  ? "This game does not have a matched props event from the current books."
                   : hasNoPostedMarkets
-                    ? "No player markets are posted for this player from the current books."
+                    ? "No player markets are posted for this player."
                     : hasOnlyStaleOrPartial
                       ? "Only stale or incomplete offers were returned for this player."
-                      : "No live market cleared the current match and freshness rules for this player.",
+                      : "No market cleared the current match and freshness rules for this player.",
             }
           : undefined,
     };

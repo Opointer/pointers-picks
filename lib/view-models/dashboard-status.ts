@@ -15,8 +15,7 @@ export async function getDashboardStatusViewModel(): Promise<DashboardStatusView
 
   return {
     title: "Feed status",
-    description:
-      "Live source, freshness, and coverage stay visible before you move into the slate.",
+    description: "Feed health at a glance.",
     chips: [status.providerChip, status.freshnessChip, status.fallbackChip],
     warnings: status.warnings,
   };
