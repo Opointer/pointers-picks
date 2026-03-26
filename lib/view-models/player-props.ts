@@ -134,12 +134,12 @@ function buildUnavailableViewModel(message: string): PlayerPropsPageViewModel {
     notFound: false,
     header: {
       eyebrow: "Props",
-      title: "Player props unavailable",
-      description: "Live player props are unavailable for this page right now.",
+      title: "Props feed unavailable",
+      description: "Live player markets could not be loaded for this page.",
     },
     trustChips: [
       { label: "Unavailable", tone: "danger" },
-      { label: "Live only", tone: "neutral" },
+      { label: "Feed refresh missing", tone: "warning" },
     ],
     marketGroups: [],
     availabilityRows: [
@@ -152,8 +152,8 @@ function buildUnavailableViewModel(message: string): PlayerPropsPageViewModel {
     ],
     warnings: [message],
     emptyState: {
-      title: "No props available right now",
-      description: "The page stayed online, but there are no trusted live props to show.",
+      title: "Props board unavailable",
+      description: "The live props feed did not return a usable response for this page.",
     },
   };
 }
@@ -190,11 +190,11 @@ export async function getPlayerPropsPageViewModel({
         tone: liveFeedAvailable ? "success" : "danger",
       },
       {
-        label: result.provider.fetchedAt ? `Updated ${formatTimestamp(result.provider.fetchedAt)}` : "Data delayed",
+        label: result.provider.fetchedAt ? `Updated ${formatTimestamp(result.provider.fetchedAt)}` : "Feed refresh missing",
         tone: result.provider.fetchedAt ? "neutral" : "warning",
       },
       {
-        label: result.availabilityLog.length > 0 ? "Partial coverage" : "Full coverage",
+        label: result.availabilityLog.length > 0 ? "Partial market coverage" : "Full market coverage",
         tone: result.availabilityLog.length > 0 ? "warning" : "success",
       },
     ];
@@ -256,6 +256,19 @@ export async function getPlayerPropsPageViewModel({
       detail: row.detail,
     }));
 
+    const hasFeedFailure = result.availabilityLog.some((row) => row.reason === "service_unavailable");
+    const hasMatchedGameWarning = result.warnings.some((warning) =>
+      warning.includes("No live props event matched this game"),
+    );
+    const hasOnlyStaleOrPartial =
+      result.availabilityLog.length > 0 &&
+      result.availabilityLog.every((row) =>
+        ["stale_data", "one_sided_offer", "partial_data"].includes(row.reason),
+      );
+    const hasNoPostedMarkets =
+      result.availabilityLog.length > 0 &&
+      result.availabilityLog.every((row) => row.reason === "market_not_offered");
+
     return {
       notFound: false,
       header: {
@@ -270,8 +283,22 @@ export async function getPlayerPropsPageViewModel({
       emptyState:
         marketGroups.length === 0
           ? {
-              title: "No verified props available",
-              description: "No live market cleared the current match and freshness rules for this player.",
+              title: hasFeedFailure
+                ? "Props feed unavailable"
+                : hasMatchedGameWarning || hasNoPostedMarkets
+                  ? "No player markets posted"
+                  : hasOnlyStaleOrPartial
+                    ? "No usable markets available"
+                    : "No verified props available",
+              description: hasFeedFailure
+                ? "The live props feed failed before a trusted player market page could be built."
+                : hasMatchedGameWarning
+                  ? "This game does not have a matched live props event from the current books."
+                  : hasNoPostedMarkets
+                    ? "No player markets are posted for this player from the current books."
+                    : hasOnlyStaleOrPartial
+                      ? "Only stale or incomplete offers were returned for this player."
+                      : "No live market cleared the current match and freshness rules for this player.",
             }
           : undefined,
     };

@@ -1,4 +1,5 @@
 import { getDataProvider } from "@/lib/data/provider-factory";
+import { getAvailablePlayerPropPages } from "@/lib/services/player-props";
 
 export interface PlayersPageRowViewModel {
   id: string;
@@ -19,38 +20,28 @@ export interface PlayersPageViewModel {
 export async function getPlayersPageViewModel(): Promise<PlayersPageViewModel> {
   try {
     const dataProvider = getDataProvider();
-    const [players, teams, games] = await Promise.all([
+    const [players, teams, availableProps] = await Promise.all([
       dataProvider.getPlayers(),
       dataProvider.getTeams(),
-      dataProvider.getGames(),
+      getAvailablePlayerPropPages(),
     ]);
-    const nextGameByTeamId = new Map<string, (typeof games)[number]>();
-
-    for (const game of games
-      .filter((entry) => entry.status === "upcoming")
-      .sort((left, right) => left.gameDate.localeCompare(right.gameDate))) {
-      if (!nextGameByTeamId.has(game.homeTeamId)) {
-        nextGameByTeamId.set(game.homeTeamId, game);
-      }
-
-      if (!nextGameByTeamId.has(game.awayTeamId)) {
-        nextGameByTeamId.set(game.awayTeamId, game);
-      }
-    }
+    const nextPropPageByPlayerId = new Map(
+      availableProps.pages.map((page) => [page.playerId, page]),
+    );
 
     return {
       rows: players.map((player) => {
         const team = teams.find((entry) => entry.id === player.teamId);
-        const nextGame = nextGameByTeamId.get(player.teamId);
+        const nextPropPage = nextPropPageByPlayerId.get(player.id);
 
         return {
           id: player.id,
           title: `${player.firstName} ${player.lastName}`,
-          href: nextGame ? `/props/${nextGame.id}/${player.id}` : undefined,
+          href: nextPropPage?.href,
           profile: `${team?.abbreviation ?? "TEAM"} • ${player.position}`,
-          detail: nextGame
-            ? "Open the player props page for the next scheduled game."
-            : "No upcoming game is currently attached to this player’s team.",
+          detail: nextPropPage
+            ? "Verified live markets are available on the player page."
+            : "No verified player market is posted for this player right now.",
         };
       }),
       emptyState: undefined,

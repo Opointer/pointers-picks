@@ -59,7 +59,7 @@ export default async function TeamsPage() {
           emptyTitle={viewModel.emptyState?.title ?? "No teams available"}
           emptyDescription={
             viewModel.emptyState?.description ??
-            "The live team directory is unavailable right now."
+            "The live team directory could not be loaded."
           }
         />
       </SectionCard>

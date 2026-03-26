@@ -91,14 +91,14 @@ function buildUnavailableOverlay(team: Team): TeamDetailMarketOverlayViewModel {
     description: `${team.name} does not have a verified live odds overlay available right now.`,
     chips: [
       { label: "Unavailable", tone: "danger" },
-      { label: "Live only", tone: "neutral" },
+      { label: "Odds not posted", tone: "warning" },
     ],
     items: [
       { eyebrow: "Spread", title: "Unavailable", description: "No verified spread is available." },
       { eyebrow: "Total", title: "Unavailable", description: "No verified total is available." },
       { eyebrow: "Moneyline", title: "Unavailable", description: "No verified moneyline is available." },
     ],
-    note: "This team page stays online without substituting unverified market data.",
+    note: "No verified market data is posted for this team right now.",
   };
 }
 
@@ -266,7 +266,7 @@ export async function getTeamDetailViewModel(teamId: string): Promise<TeamDetail
       header: {
         eyebrow: "Team profile",
         title: teamId.toUpperCase(),
-        description: "Live team data is unavailable right now.",
+        description: "Live team data could not be loaded for this page.",
       },
       summaryCards: [
         {
@@ -284,14 +284,14 @@ export async function getTeamDetailViewModel(teamId: string): Promise<TeamDetail
         description: "No verified live market is available for this team.",
         chips: [
           { label: "Unavailable", tone: "danger" },
-          { label: "Live only", tone: "neutral" },
+          { label: "Odds not posted", tone: "warning" },
         ],
         items: [
           { eyebrow: "Spread", title: "Unavailable", description: "No verified line is available." },
           { eyebrow: "Total", title: "Unavailable", description: "No verified line is available." },
           { eyebrow: "Moneyline", title: "Unavailable", description: "No verified line is available." },
         ],
-        note: "The page stayed online without substituting unverified data.",
+        note: "No verified market data is available for this team.",
       },
       recentGames: [],
       playerRows: [],

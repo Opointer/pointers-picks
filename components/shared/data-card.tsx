@@ -31,7 +31,7 @@ export function DataCard({
   children,
   footer,
   href,
-  actionLabel = "Open details",
+  actionLabel = "View details",
   variant = "default",
   state = "default",
   emptyTitle,
@@ -69,8 +69,8 @@ export function DataCard({
       <article className={shellClass}>
         <EmptyState
           compact
-          title={emptyTitle ?? "No card data"}
-          description={emptyDescription ?? "There is no live content to show in this module right now."}
+          title={emptyTitle ?? "No live card content"}
+          description={emptyDescription ?? "There is no live information to show in this module yet."}
         />
       </article>
     );
@@ -82,7 +82,7 @@ export function DataCard({
         <ErrorState
           compact
           title={errorTitle ?? "Card unavailable"}
-          description={errorDescription ?? "This module could not render cleanly from the current live feed."}
+          description={errorDescription ?? "This module could not be rendered from the current live feed."}
         />
       </article>
     );

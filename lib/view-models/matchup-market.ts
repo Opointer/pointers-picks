@@ -95,7 +95,7 @@ export async function getMatchupMarketViewModel(
       sectionDescription: "This matchup does not have an upcoming game on the live schedule.",
       chips: [
         { label: "Unavailable", tone: "danger" },
-        { label: "Live only", tone: "neutral" },
+        { label: "No scheduled market", tone: "warning" },
       ],
       items: buildFallbackItems(homeTeam),
       note: "Matchup context is available, but no upcoming live market exists for this team pairing.",
@@ -109,13 +109,13 @@ export async function getMatchupMarketViewModel(
     if (!gameOdds?.fetchMeta) {
       return {
         sectionTitle: "Market context",
-        sectionDescription: "The matchup is on the schedule, but live odds are unavailable right now.",
+        sectionDescription: "The matchup is on the schedule, but no verified odds are posted.",
         chips: [
           { label: "Unavailable", tone: "danger" },
-          { label: "Live only", tone: "neutral" },
+          { label: "Odds not posted", tone: "warning" },
         ],
         items: buildFallbackItems(homeTeam),
-      note: "The page stays online without substituting unverified market lines.",
+      note: "No verified market lines are available for this matchup.",
       };
     }
 
@@ -136,10 +136,10 @@ export async function getMatchupMarketViewModel(
   } catch (error) {
     return {
       sectionTitle: "Market context",
-      sectionDescription: "Live odds are unavailable right now.",
+      sectionDescription: "Live odds could not be loaded for this matchup.",
       chips: [
         { label: "Unavailable", tone: "danger" },
-        { label: "Live only", tone: "neutral" },
+        { label: "Odds feed error", tone: "warning" },
       ],
       items: buildFallbackItems(homeTeam),
       note:

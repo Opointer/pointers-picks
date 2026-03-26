@@ -6,7 +6,6 @@ export interface NavigationItem {
 export const primaryNavigation: NavigationItem[] = [
   { href: "/dashboard", label: "Dashboard" },
   { href: "/games", label: "Games" },
-  { href: "/pointers-picks", label: "Picks" },
   { href: "/props", label: "Props" },
   { href: "/teams", label: "Teams" },
   { href: "/players", label: "Players" },

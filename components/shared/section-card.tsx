@@ -35,14 +35,14 @@ export function SectionCard({
     ) : state === "empty" ? (
       <EmptyState
         compact
-        title={emptyTitle ?? "Nothing to show right now"}
-        description={emptyDescription ?? "This section has no live content to display yet."}
+        title={emptyTitle ?? "No live section data"}
+        description={emptyDescription ?? "This section does not have live information to show yet."}
       />
     ) : state === "error" ? (
       <ErrorState
         compact
         title={errorTitle ?? "Section unavailable"}
-        description={errorDescription ?? "This section could not render safely from the live feed."}
+        description={errorDescription ?? "This section could not be rendered from the live feed."}
       />
     ) : (
       children

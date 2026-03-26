@@ -40,14 +40,14 @@ export default async function PlayersPage() {
       <PageHeader
         eyebrow="Players"
         title="Player directory"
-        description="Live roster pages with direct routes into props when a scheduled game is available."
+        description="Live roster pages with direct routes into props only when a verified player market is posted."
         aside={
           <div className="rounded-[26px] border border-[rgba(16,23,23,0.08)] bg-[linear-gradient(180deg,rgba(255,255,255,0.88),rgba(239,247,243,0.78))] px-5 py-4 shadow-[var(--shadow-subtle)]">
             <p className="text-[10px] font-extrabold uppercase tracking-[0.32em] text-[var(--text-soft)]">
               Active players
             </p>
             <p className="mt-2 text-sm leading-6 text-[var(--text-muted)]">
-              Players route into live props pages only when the slate can support a real destination.
+              Players route into live props pages only when a verified market destination exists.
             </p>
           </div>
         }
@@ -65,7 +65,7 @@ export default async function PlayersPage() {
           emptyTitle={viewModel.emptyState?.title ?? "No players available"}
           emptyDescription={
             viewModel.emptyState?.description ??
-            "The live player directory is unavailable right now."
+            "The live player directory could not be loaded."
           }
         />
       </SectionCard>

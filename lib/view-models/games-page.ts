@@ -158,7 +158,7 @@ function buildCardDescription({
   homeTeam: Team;
 }): string {
   if (!gameOdds?.fetchMeta) {
-    return `${awayTeam.abbreviation} at ${homeTeam.abbreviation} is on the slate, but live market data is unavailable right now.`;
+    return `${awayTeam.abbreviation} at ${homeTeam.abbreviation} is on the slate, but no verified market data is posted yet.`;
   }
 
   return `${awayTeam.abbreviation} at ${homeTeam.abbreviation} with live spread, total, and moneyline context in one card.`;
@@ -242,7 +242,7 @@ export async function getGamesPageViewModel(selectedDateParam?: string): Promise
       todayHref: `/games?date=${toCentralDateKey(new Date())}`,
       previousHref: `/games?date=${shiftDateKey(selectedDate, -1)}`,
       nextHref: `/games?date=${shiftDateKey(selectedDate, 1)}`,
-      slateSummary: "Live slate data is unavailable right now.",
+      slateSummary: "Live slate data could not be loaded.",
       sectionTitle: "Slate unavailable",
       sectionDescription:
         "The live schedule could not be loaded for this date.",

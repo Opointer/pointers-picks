@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { getDataProvider } from "@/lib/data/provider-factory";
+import { getAvailablePlayerPropPages } from "@/lib/services/player-props";
 import { type PlatformStatusChipViewModel } from "@/lib/view-models/platform-status";
 
 export interface MatchupAnalysisCardViewModel {
@@ -70,10 +71,10 @@ export async function getMatchupDetailViewModel(
 ): Promise<MatchupDetailViewModel> {
   try {
     const dataProvider = getDataProvider();
-    const [analysis, games, players] = await Promise.all([
+    const [analysis, games, availableProps] = await Promise.all([
       dataProvider.getMatchupAnalysis(homeTeamId, awayTeamId),
       dataProvider.getGames(),
-      dataProvider.getPlayers(),
+      getAvailablePlayerPropPages(),
     ]);
     const homeName = `${analysis.matchup.homeTeam.team.city} ${analysis.matchup.homeTeam.team.name}`;
     const awayName = `${analysis.matchup.awayTeam.team.city} ${analysis.matchup.awayTeam.team.name}`;
@@ -89,21 +90,18 @@ export async function getMatchupDetailViewModel(
     }
 
     const relatedProps = matchupGame
-      ? players
-          .filter(
-            (player) =>
-              player.teamId === homeTeamId || player.teamId === awayTeamId,
-          )
+      ? availableProps.pages
+          .filter((page) => page.gameId === matchupGame.id)
           .slice(0, 4)
-          .map((player) => ({
-            id: `${matchupGame.id}:${player.id}`,
+          .map((page) => ({
+            id: page.id,
             market: "Player props",
-            title: `${player.firstName} ${player.lastName}`,
-            subtitle: `${player.teamId === homeTeamId ? analysis.matchup.homeTeam.team.abbreviation : analysis.matchup.awayTeam.team.abbreviation} player page`,
-            rationale: "Open the dedicated props page for live market availability and trust details.",
+            title: page.title,
+            subtitle: page.subtitle,
+            rationale: page.detail,
             line: "Live board",
-            matchQuality: "Route available",
-            href: `/props/${matchupGame.id}/${player.id}`,
+            matchQuality: "Verified route",
+            href: page.href,
           }))
       : [];
 
@@ -169,7 +167,7 @@ export async function getMatchupDetailViewModel(
       header: {
         eyebrow: "Matchup",
         title: `${awayTeamId.toUpperCase()} at ${homeTeamId.toUpperCase()}`,
-        description: "Live matchup analysis is unavailable right now.",
+        description: "Live matchup analysis could not be loaded for this game.",
       },
       summaryCard: {
         title: "Analysis unavailable",
@@ -180,7 +178,7 @@ export async function getMatchupDetailViewModel(
         confidenceLabel: "Low",
         confidenceTone: "low",
         projectedRange: "No projection available",
-        outlook: "The page stayed online without substituting unverified analysis.",
+        outlook: "No verified matchup analysis is available for this game.",
       },
       trendCards: [],
       comparisonRows: [],

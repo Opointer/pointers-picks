@@ -45,12 +45,12 @@ function formatTimestamp(value: string | undefined): string {
 function buildUnavailableViewModel(message: string): PlatformStatusViewModel {
   return {
     headline: "Data unavailable",
-    summary: "Live provider status is unavailable right now.",
+    summary: "Live provider health could not be loaded.",
     providerChip: { label: "Unavailable", tone: "danger" },
-    freshnessChip: { label: "No recent refresh", tone: "warning" },
-    fallbackChip: { label: "Live only", tone: "neutral" },
+    freshnessChip: { label: "Feed refresh missing", tone: "warning" },
+    fallbackChip: { label: "Coverage unavailable", tone: "danger" },
     warnings: [message],
-    lastUpdatedLabel: "No successful refresh is available right now.",
+    lastUpdatedLabel: "No successful refresh is available.",
     detailCards: [
       {
         label: "Domain data",
@@ -70,7 +70,7 @@ function buildUnavailableViewModel(message: string): PlatformStatusViewModel {
       {
         label: "Warnings",
         value: "1",
-        detail: "The product stays online without substituting backup fixtures.",
+        detail: "Live coverage could not be verified from the current feeds.",
       },
     ],
   };
@@ -93,7 +93,7 @@ export async function getPlatformStatusViewModel(): Promise<PlatformStatusViewMo
       headline: hasDomainCoverage ? (isDelayed ? "Live feeds delayed" : "Live feeds healthy") : "Domain data unavailable",
       summary: hasDomainCoverage
         ? `${summary.upcomingGames} upcoming games tracked • ${formatTimestamp(summary.lastUpdated)}`
-        : "The live NBA schedule and team feed is unavailable.",
+        : "The live NBA schedule and team feed could not be loaded.",
       providerChip: {
         label: hasDomainCoverage ? "Live" : "Unavailable",
         tone: hasDomainCoverage ? "success" : "danger",
@@ -129,21 +129,21 @@ export async function getPlatformStatusViewModel(): Promise<PlatformStatusViewMo
           value: `${teams.length}`,
           detail: hasDomainCoverage
             ? "Live team identities are available."
-            : "The live NBA teams feed is unavailable.",
+            : "The live NBA teams feed could not be loaded.",
         },
         {
           label: "Upcoming games",
           value: `${summary.upcomingGames}`,
           detail: hasGameOdds
             ? `${summary.gameOddsCount} games currently have odds overlays.`
-            : "Schedule data is live, but odds overlays are unavailable.",
+            : "Schedule data is live, but odds overlays are not posted.",
         },
         {
           label: "Props markets",
           value: `${summary.propMarketsCount}`,
           detail: hasProps
             ? `${summary.playersWithProps} players currently have tracked props.`
-            : "Player props are unavailable or unmatched for the current slate.",
+            : "Player props are not posted or could not be matched for the current slate.",
         },
         {
           label: "Warnings",

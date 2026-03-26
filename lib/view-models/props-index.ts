@@ -1,5 +1,3 @@
-import { getDataProvider } from "@/lib/data/provider-factory";
-import { getOddsProvider } from "@/lib/odds/provider-factory";
 import {
   formatCentralDateLabel,
   sanitizeDateKey,
@@ -7,6 +5,7 @@ import {
   toCentralDateKey,
 } from "@/lib/view-models/date-controls";
 import { type PlatformStatusChipViewModel } from "@/lib/view-models/platform-status";
+import { getAvailablePlayerPropPages } from "@/lib/services/player-props";
 
 export interface PropsIndexPlayerCardViewModel {
   id: string;
@@ -32,60 +31,18 @@ export interface PropsIndexViewModel {
   };
 }
 
-function formatGameTime(value: string): string {
-  const date = new Date(value);
-
-  if (Number.isNaN(date.valueOf())) {
-    return "Time unavailable";
-  }
-
-  return new Intl.DateTimeFormat("en-US", {
-    weekday: "short",
-    hour: "numeric",
-    minute: "2-digit",
-    hour12: true,
-    timeZone: "America/Chicago",
-  }).format(date);
-}
-
 export async function getPropsIndexViewModel(selectedDateParam?: string): Promise<PropsIndexViewModel> {
-  const dataProvider = getDataProvider();
   const selectedDate = sanitizeDateKey(selectedDateParam) ?? toCentralDateKey(new Date());
 
   try {
-    const [games, players, teams, feed] = await Promise.all([
-      dataProvider.getGames(),
-      dataProvider.getPlayers(),
-      dataProvider.getTeams(),
-      getOddsProvider().getPlayerPropFeed(),
-    ]);
-
-    const slateGames = games
-      .filter((game) => game.status === "upcoming")
-      .filter((game) => toCentralDateKey(game.gameDate) === selectedDate)
-      .sort((left, right) => left.gameDate.localeCompare(right.gameDate));
-
-    const slatePlayers = slateGames.flatMap((game) => {
-      const gamePlayers = players
-        .filter((player) => player.teamId === game.homeTeamId || player.teamId === game.awayTeamId)
-        .slice(0, 6);
-
-      return gamePlayers.map((player) => {
-        const team = teams.find((entry) => entry.id === player.teamId);
-        const opponentId = game.homeTeamId === player.teamId ? game.awayTeamId : game.homeTeamId;
-        const opponent = teams.find((entry) => entry.id === opponentId);
-
-        return {
-          id: `${game.id}:${player.id}`,
-          title: `${player.firstName} ${player.lastName}`,
-          subtitle: `${team?.abbreviation ?? "TEAM"} vs ${opponent?.abbreviation ?? "OPP"} • ${formatGameTime(game.gameDate)}`,
-          detail: `${player.position} • Open the player page for live props availability, freshness, and trust details.`,
-          href: `/props/${game.id}/${player.id}`,
-        } satisfies PropsIndexPlayerCardViewModel;
-      });
-    });
-
-    const liveFeedAvailable = feed.events.length > 0;
+    const result = await getAvailablePlayerPropPages({ selectedDate });
+    const players = result.pages.map((page) => ({
+      id: page.id,
+      title: page.title,
+      subtitle: page.subtitle,
+      detail: page.detail,
+      href: page.href,
+    }));
 
     return {
       selectedDate,
@@ -94,31 +51,30 @@ export async function getPropsIndexViewModel(selectedDateParam?: string): Promis
       previousHref: `/props?date=${shiftDateKey(selectedDate, -1)}`,
       nextHref: `/props?date=${shiftDateKey(selectedDate, 1)}`,
       summary:
-        slatePlayers.length > 0
-          ? `${slatePlayers.length} player pages are available for ${formatCentralDateLabel(selectedDate)}.`
-          : `No player props pages are available for ${formatCentralDateLabel(selectedDate)}.`,
+        players.length > 0
+          ? `${players.length} player market page${players.length === 1 ? "" : "s"} available for ${formatCentralDateLabel(selectedDate)}.`
+          : `No player markets are posted for ${formatCentralDateLabel(selectedDate)}.`,
       trustChips: [
         {
-          label: liveFeedAvailable ? "Live feed" : "Unavailable",
-          tone: liveFeedAvailable ? "success" : "danger",
+          label: result.feedAvailable ? "Live feed" : "Feed unavailable",
+          tone: result.feedAvailable ? "success" : "danger",
         },
         {
-          label: feed.fetchMeta.fetchedAt ? "Updated recently" : "Data delayed",
-          tone: feed.fetchMeta.fetchedAt ? "neutral" : "warning",
+          label: result.fetchedAt ? "Feed refreshed" : "Feed refresh missing",
+          tone: result.fetchedAt ? "neutral" : "warning",
         },
         {
-          label: slatePlayers.length > 0 ? "Player pages available" : "No slate players",
-          tone: slatePlayers.length > 0 ? "neutral" : "warning",
+          label: players.length > 0 ? "Player markets live" : "Props not posted",
+          tone: players.length > 0 ? "neutral" : "warning",
         },
       ],
-      warnings: feed.warnings,
-      players: slatePlayers,
+      warnings: result.warnings,
+      players,
       emptyState:
-        slatePlayers.length === 0
+        players.length === 0
           ? {
-              title: "No player pages on this date",
-              description:
-                "The selected date does not currently have any scheduled NBA players to browse.",
+              title: "No player markets posted",
+              description: "The selected date has no verified player-market pages to open yet.",
             }
           : undefined,
     };
@@ -129,10 +85,11 @@ export async function getPropsIndexViewModel(selectedDateParam?: string): Promis
       todayHref: `/props?date=${toCentralDateKey(new Date())}`,
       previousHref: `/props?date=${shiftDateKey(selectedDate, -1)}`,
       nextHref: `/props?date=${shiftDateKey(selectedDate, 1)}`,
-      summary: "Live player props pages are unavailable right now.",
+      summary: "Player market pages could not be loaded.",
       trustChips: [
-        { label: "Unavailable", tone: "danger" },
-        { label: "Live only", tone: "neutral" },
+        { label: "Feed unavailable", tone: "danger" },
+        { label: "Feed refresh missing", tone: "warning" },
+        { label: "Props not posted", tone: "warning" },
       ],
       warnings: [
         error instanceof Error
@@ -141,9 +98,8 @@ export async function getPropsIndexViewModel(selectedDateParam?: string): Promis
       ],
       players: [],
       emptyState: {
-        title: "Props unavailable",
-        description:
-          "The live props directory could not be loaded for the selected date.",
+        title: "Props board unavailable",
+        description: "The live props directory could not be loaded for the selected date.",
       },
     };
   }

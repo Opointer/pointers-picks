@@ -95,8 +95,8 @@ export default async function PropsIndexPage({
 
         <SectionCard
           eyebrow="Available pages"
-          title="Players on the slate"
-          description="This board is built for fast entry into player-level props pages without clutter."
+          title="Players with posted markets"
+          description="This board only surfaces player pages with verified live markets behind them."
         >
           {viewModel.players.length === 0 && viewModel.emptyState ? (
             <EmptyState title={viewModel.emptyState.title} description={viewModel.emptyState.description} />

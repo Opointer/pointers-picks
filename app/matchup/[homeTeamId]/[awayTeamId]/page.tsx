@@ -221,8 +221,8 @@ export default async function MatchupPage({
           >
             {detailViewModel.relatedProps.length === 0 ? (
               <EmptyState
-                title="No live props routes"
-                description="This matchup does not have any live player props pages to open right now."
+                title="No verified props routes"
+                description="This matchup does not have any verified player market pages to open right now."
               />
             ) : (
               <div className="grid gap-4 xl:grid-cols-2">
