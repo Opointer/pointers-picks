@@ -8,59 +8,53 @@ export function SidebarNav() {
   const pathname = usePathname();
 
   return (
-    <aside className="hidden w-[272px] flex-col border-r border-[rgba(17,25,24,0.08)] bg-[rgba(243,236,223,0.8)] px-6 py-8 backdrop-blur-[2px] lg:flex">
-      <Link href="/dashboard" className="pb-9">
-        <p className="text-[10px] font-semibold uppercase tracking-[0.34em] text-[var(--accent-teal)]">
-          Pointers Picks
-        </p>
-        <h1 className="mt-3 text-[2.25rem] leading-[0.95] font-semibold tracking-[-0.05em] text-slate-950">
-          NBA desk
-        </h1>
-        <p className="mt-3 max-w-[14rem] text-sm leading-6 text-[var(--text-muted)]">
-          Live NBA coverage with sharper routes into games, teams, props, and feed health.
-        </p>
-      </Link>
+    <header className="sticky top-0 z-30 border-b border-[var(--border-soft)] bg-[rgba(244,239,231,0.92)] backdrop-blur-md">
+      <div className="mx-auto flex w-full max-w-[1480px] flex-col gap-4 px-4 py-4 sm:px-6 lg:px-8">
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <Link href="/dashboard" className="min-w-0">
+            <p className="text-[10px] font-extrabold uppercase tracking-[0.42em] text-[var(--accent-primary)]">
+              NBA market desk
+            </p>
+            <div className="mt-1 flex items-end gap-3">
+              <h1 className="ui-masthead text-[2.4rem] leading-none text-[var(--foreground-strong)] sm:text-[3rem]">
+                Pointers Picks
+              </h1>
+              <span className="mb-1 hidden rounded-full border border-[rgba(15,91,87,0.14)] bg-[rgba(216,235,228,0.72)] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-[var(--accent-primary-strong)] sm:inline-flex">
+                Live NBA
+              </span>
+            </div>
+          </Link>
 
-      <div className="border-t border-[var(--border-soft)] pt-6">
-        <p className="px-2 text-[10px] font-semibold uppercase tracking-[0.3em] text-[var(--text-soft)]">
-          Coverage
-        </p>
-      </div>
-      <nav className="mt-3 flex flex-col gap-1.5">
-        {primaryNavigation.map((item) => {
-          const active = pathname === item.href || pathname.startsWith(`${item.href}/`);
+          <p className="max-w-[28rem] text-sm leading-6 text-[var(--text-muted)]">
+            Real-time NBA board coverage with premium routes into games, props, team profiles, and live market context.
+          </p>
+        </div>
 
-          return (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={`group rounded-[20px] px-4 py-3.5 text-sm font-semibold transition duration-150 ${
-                active
-                  ? "border border-[rgba(17,25,24,0.08)] bg-[rgba(255,252,247,0.94)] text-slate-950 shadow-[0_10px_20px_rgba(17,25,24,0.045)]"
-                  : "border border-transparent text-[var(--text-muted)] hover:border-[rgba(17,25,24,0.08)] hover:bg-[rgba(255,252,247,0.7)] hover:text-slate-950"
-              }`}
-            >
-              <span className="flex items-center justify-between gap-3">
-                <span>{item.label}</span>
+        <nav className="flex flex-wrap items-center gap-2 border-t border-[var(--border-soft)] pt-4">
+          {primaryNavigation.map((item) => {
+            const active = pathname === item.href || pathname.startsWith(`${item.href}/`);
+
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`group relative inline-flex items-center rounded-full px-4 py-2.5 text-[0.76rem] font-extrabold uppercase tracking-[0.16em] transition ${
+                  active
+                    ? "bg-[var(--surface-contrast)] text-white shadow-[var(--shadow-subtle)]"
+                    : "text-[var(--text-muted)] hover:bg-[rgba(255,253,249,0.9)] hover:text-[var(--foreground-strong)]"
+                }`}
+              >
+                {item.label}
                 <span
-                  className={`h-5 w-1 rounded-full transition ${
-                    active ? "bg-[var(--accent-teal)]" : "bg-transparent group-hover:bg-[rgba(17,25,24,0.14)]"
+                  className={`ml-2 h-1.5 w-1.5 rounded-full transition ${
+                    active ? "bg-[var(--accent-gold-soft)]" : "bg-transparent group-hover:bg-[var(--accent-primary)]"
                   }`}
                 />
-              </span>
-            </Link>
-          );
-        })}
-      </nav>
-
-      <div className="mt-auto rounded-[30px] border border-[rgba(17,25,24,0.08)] bg-[rgba(255,252,247,0.84)] p-5 shadow-[0_10px_20px_rgba(17,25,24,0.04)]">
-        <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[var(--text-soft)]">
-          Coverage note
-        </p>
-        <p className="mt-3 text-sm leading-6 text-[var(--text-muted)]">
-          Built to stay readable on single-game nights, full boards, and partial feed coverage.
-        </p>
+              </Link>
+            );
+          })}
+        </nav>
       </div>
-    </aside>
+    </header>
   );
 }

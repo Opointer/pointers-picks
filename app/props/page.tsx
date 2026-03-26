@@ -19,11 +19,11 @@ export default async function PropsIndexPage({
       <PageHeader
         eyebrow="Props"
         title="Props board"
-        description="Move through the slate by date, open player pages quickly, and keep feed quality visible before you read a single market."
+        description="Move through the slate by date, open player pages quickly, and keep live feed quality visible before you read a single market."
         variant="slate"
         aside={
-          <div className="rounded-[24px] border border-[rgba(17,25,24,0.08)] bg-[rgba(255,252,247,0.78)] px-5 py-4 shadow-[0_8px_18px_rgba(17,25,24,0.03)]">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.32em] text-[var(--text-soft)]">
+          <div className="rounded-[26px] border border-[rgba(16,23,23,0.08)] bg-[linear-gradient(180deg,rgba(255,255,255,0.88),rgba(239,247,243,0.78))] px-5 py-4 shadow-[var(--shadow-subtle)]">
+            <p className="text-[10px] font-extrabold uppercase tracking-[0.32em] text-[var(--text-soft)]">
               Board state
             </p>
             <div className="mt-3 flex flex-wrap gap-2">
@@ -54,11 +54,29 @@ export default async function PropsIndexPage({
             </div>
           }
         >
-          <div className="flex flex-wrap gap-2">
-            {viewModel.trustChips.map((chip) => (
-              <StatusChip key={`${chip.label}-${chip.tone}`} label={chip.label} tone={chip.tone} />
-            ))}
-          </div>
+          <div className="grid gap-4 lg:grid-cols-[0.75fr_1.25fr]">
+            <div className="rounded-[22px] border border-[rgba(16,23,23,0.08)] bg-[rgba(20,52,51,0.95)] px-5 py-4 text-white">
+              <p className="text-[10px] font-extrabold uppercase tracking-[0.26em] text-white/70">
+                Props coverage
+              </p>
+              <div className="mt-4 space-y-3">
+                <div className="h-2 rounded-full bg-white/12">
+                  <div className="h-2 w-[72%] rounded-full bg-[var(--accent-gold)]" />
+                </div>
+                <div className="h-2 rounded-full bg-white/12">
+                  <div className="h-2 w-[54%] rounded-full bg-[#77c3ba]" />
+                </div>
+              </div>
+              <p className="mt-4 text-sm leading-6 text-white/72">
+                The props desk is built to get you into the right player page quickly, with feed trust visible before you commit.
+              </p>
+            </div>
+            <div>
+              <div className="flex flex-wrap gap-2">
+              {viewModel.trustChips.map((chip) => (
+                <StatusChip key={`${chip.label}-${chip.tone}`} label={chip.label} tone={chip.tone} />
+              ))}
+              </div>
           {viewModel.warnings.length > 0 ? (
             <div className="mt-5 space-y-2">
               {viewModel.warnings.map((warning) => (
@@ -71,6 +89,8 @@ export default async function PropsIndexPage({
               ))}
             </div>
           ) : null}
+            </div>
+          </div>
         </SectionCard>
 
         <SectionCard

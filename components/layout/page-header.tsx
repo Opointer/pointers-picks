@@ -22,41 +22,45 @@ export function PageHeader({
 }) {
   const variantClass =
     variant === "slate"
-      ? "bg-[linear-gradient(180deg,rgba(255,253,249,0.99),rgba(242,233,220,0.97))]"
+      ? "bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(241,233,220,0.95))]"
       : variant === "detail"
-        ? "bg-[linear-gradient(180deg,rgba(255,252,247,0.99),rgba(245,238,229,0.97))]"
-        : "bg-[linear-gradient(180deg,rgba(255,253,249,0.98),rgba(248,241,232,0.96))]";
+        ? "bg-[linear-gradient(180deg,rgba(255,253,249,0.99),rgba(236,226,212,0.96))]"
+        : "bg-[linear-gradient(180deg,rgba(255,255,255,0.99),rgba(243,235,223,0.95))]";
 
   return (
-    <header className={`relative overflow-hidden rounded-[36px] border border-[rgba(17,25,24,0.09)] px-6 py-8 shadow-[var(--shadow-soft)] sm:px-8 sm:py-10 ${variantClass}`}>
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(13,92,99,0.35),transparent)]" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-40 bg-[linear-gradient(270deg,rgba(13,92,99,0.055),transparent)]" />
-      <div className="pointer-events-none absolute -right-10 top-6 h-28 w-28 rounded-full bg-[radial-gradient(circle,rgba(13,92,99,0.08),transparent_70%)]" />
+    <header
+      className={`relative overflow-hidden rounded-[36px] border border-[var(--border-soft)] px-6 py-7 shadow-[var(--shadow-soft)] sm:px-8 sm:py-9 ${variantClass}`}
+    >
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(15,91,87,0.38),transparent)]" />
+      <div className="pointer-events-none absolute right-0 top-0 h-full w-72 bg-[linear-gradient(270deg,rgba(15,91,87,0.08),transparent)]" />
+      <div className="pointer-events-none absolute -right-12 top-5 h-36 w-36 rounded-full bg-[radial-gradient(circle,rgba(15,91,87,0.14),transparent_70%)]" />
       <div className="relative flex flex-col gap-6">
-        <div className="flex flex-wrap items-center justify-between gap-4">
-          <div className="flex flex-wrap items-center gap-4">
-            {backHref ? (
-              <Link href={backHref} className="ui-back-link">
-                <span aria-hidden="true">←</span>
-                {backLabel ?? "Back"}
-              </Link>
-            ) : null}
-            <p className="text-[10px] font-semibold uppercase tracking-[0.34em] text-[var(--accent-teal)]">
-              {eyebrow}
-            </p>
+        <div className="flex flex-wrap items-start justify-between gap-4">
+          <div className="flex flex-col gap-4">
+            <div className="flex flex-wrap items-center gap-4">
+              {backHref ? (
+                <Link href={backHref} className="ui-back-link">
+                  <span aria-hidden="true">←</span>
+                  {backLabel ?? "Back"}
+                </Link>
+              ) : null}
+              <p className="text-[10px] font-extrabold uppercase tracking-[0.42em] text-[var(--accent-primary)]">
+                {eyebrow}
+              </p>
+            </div>
+            <div className={`grid gap-6 ${aside ? "xl:grid-cols-[1.2fr_0.8fr] xl:items-end" : ""}`}>
+              <div className="flex flex-col gap-4">
+                <h1 className="ui-masthead max-w-5xl text-[3.5rem] leading-[0.9] text-[var(--foreground-strong)] sm:text-[4.75rem]">
+                  {title}
+                </h1>
+                <p className="max-w-[46rem] text-[1.02rem] leading-7 text-[var(--text-muted)] sm:text-[1.06rem]">
+                  {description}
+                </p>
+              </div>
+              {aside ? <div className="min-w-0">{aside}</div> : null}
+            </div>
           </div>
           {actions}
-        </div>
-        <div className={`grid gap-6 ${aside ? "xl:grid-cols-[1.25fr_0.75fr] xl:items-end" : ""}`}>
-          <div className="flex flex-col gap-4">
-            <h1 className="max-w-5xl text-[3rem] leading-[0.9] font-semibold tracking-[-0.06em] text-slate-950 sm:text-[4.35rem]">
-              {title}
-            </h1>
-            <p className="max-w-[44rem] text-[1rem] leading-7 text-[var(--text-muted)] sm:text-[1.05rem]">
-              {description}
-            </p>
-          </div>
-          {aside ? <div className="min-w-0">{aside}</div> : null}
         </div>
       </div>
     </header>

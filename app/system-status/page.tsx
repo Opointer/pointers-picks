@@ -15,8 +15,8 @@ export default async function SystemStatusPage() {
         description="Track provider health, coverage, freshness, and any live warnings affecting the board."
         variant="detail"
         aside={
-          <div className="rounded-[24px] border border-[rgba(17,25,24,0.08)] bg-[rgba(255,252,247,0.78)] px-5 py-4 shadow-[0_8px_18px_rgba(17,25,24,0.03)]">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.32em] text-[var(--text-soft)]">
+          <div className="rounded-[26px] border border-[rgba(16,23,23,0.08)] bg-[linear-gradient(180deg,rgba(255,255,255,0.88),rgba(239,247,243,0.78))] px-5 py-4 shadow-[var(--shadow-subtle)]">
+            <p className="text-[10px] font-extrabold uppercase tracking-[0.32em] text-[var(--text-soft)]">
               Operations
             </p>
             <div className="mt-3 flex flex-wrap gap-2">

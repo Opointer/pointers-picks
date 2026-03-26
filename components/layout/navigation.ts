@@ -4,10 +4,11 @@ export interface NavigationItem {
 }
 
 export const primaryNavigation: NavigationItem[] = [
-  { href: "/dashboard", label: "Overview" },
+  { href: "/dashboard", label: "Dashboard" },
   { href: "/games", label: "Games" },
+  { href: "/pointers-picks", label: "Picks" },
   { href: "/props", label: "Props" },
   { href: "/teams", label: "Teams" },
   { href: "/players", label: "Players" },
-  { href: "/system-status", label: "System Status" },
+  { href: "/system-status", label: "Status" },
 ];

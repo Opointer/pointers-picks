@@ -34,7 +34,7 @@ export function DataTable<T>({
   if (state === "loading") {
     return (
       <div className="overflow-hidden rounded-[26px] border border-[var(--border-soft)] bg-[var(--surface-strong)] shadow-[var(--shadow-subtle)]">
-        <div className="border-b border-[var(--border-soft)] bg-[var(--surface-soft)] px-6 py-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-[var(--text-soft)]">
+        <div className="border-b border-[var(--border-soft)] bg-[var(--surface-soft)] px-6 py-4 text-[11px] font-extrabold uppercase tracking-[0.28em] text-[var(--text-soft)]">
           Loading table
         </div>
         <div className="animate-pulse divide-y divide-[var(--border-soft)]">
@@ -50,14 +50,11 @@ export function DataTable<T>({
     );
   }
 
-  if (state === "empty") {
+  if (state === "empty" || !rows.length) {
     return (
       <EmptyState
         title={emptyTitle ?? "No rows to show"}
-        description={
-          emptyDescription ??
-          "Use the empty state when a table has no rows but the page still needs to feel intentional."
-        }
+        description={emptyDescription ?? "There are no live rows to display in this table right now."}
       />
     );
   }
@@ -66,33 +63,18 @@ export function DataTable<T>({
     return (
       <ErrorState
         title={errorTitle ?? "Table unavailable"}
-        description={
-          errorDescription ??
-          "Use the visual-only error state when a table cannot render safely."
-        }
-      />
-    );
-  }
-
-  if (!rows.length) {
-    return (
-      <EmptyState
-        title={emptyTitle ?? "No rows to show"}
-        description={
-          emptyDescription ??
-          "Use the empty state when a table has no rows but the page still needs to feel intentional."
-        }
+        description={errorDescription ?? "This table could not render cleanly from the live feed."}
       />
     );
   }
 
   return (
-    <div className="overflow-hidden rounded-[28px] border border-[rgba(17,25,24,0.08)] bg-[var(--surface-strong)] shadow-[0_6px_16px_rgba(17,25,24,0.03)]">
+    <div className="overflow-hidden rounded-[28px] border border-[var(--border-soft)] bg-[var(--surface-strong)] shadow-[0_10px_22px_rgba(16,23,23,0.04)]">
       <table className="min-w-full text-left">
-        <thead className="bg-[linear-gradient(180deg,#fbf6ee,#f2e8da)] text-[10px] uppercase tracking-[0.32em] text-[var(--text-soft)]">
+        <thead className="bg-[linear-gradient(180deg,#fdfaf4,#f1e8da)] text-[10px] uppercase tracking-[0.34em] text-[var(--text-soft)]">
           <tr>
             {columns.map((column) => (
-              <th key={column.key} className={`px-6 py-4 font-semibold ${column.className ?? ""}`}>
+              <th key={column.key} className={`px-6 py-4 font-extrabold ${column.className ?? ""}`}>
                 {column.header}
               </th>
             ))}
@@ -102,7 +84,7 @@ export function DataTable<T>({
           {rows.map((row, index) => (
             <tr
               key={getRowKey ? getRowKey(row, index) : `${index}`}
-              className="border-t border-[var(--border-soft)] text-sm text-slate-700 transition hover:bg-[rgba(246,240,230,0.55)]"
+              className="border-t border-[var(--border-soft)] text-sm text-slate-700 transition hover:bg-[rgba(242,234,223,0.48)]"
             >
               {columns.map((column) => (
                 <td key={column.key} className={`px-6 py-4 align-top leading-6 ${column.className ?? ""}`}>

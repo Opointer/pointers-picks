@@ -9,14 +9,14 @@ export default async function DashboardPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Overview"
-        title="Today's desk"
-        description="Start with the live board, check feed health, and move straight into games, teams, and props."
+        eyebrow="Pointers Picks"
+        title="The premium NBA board"
+        description="Live games, player markets, and trust signals in one sharper board built to feel fast, readable, and decisive."
         variant="default"
         aside={
-          <div className="rounded-[24px] border border-[rgba(17,25,24,0.08)] bg-[rgba(255,252,247,0.78)] px-5 py-4 shadow-[0_8px_18px_rgba(17,25,24,0.03)]">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.32em] text-[var(--text-soft)]">
-              Live desk
+          <div className="rounded-[26px] border border-[rgba(16,23,23,0.08)] bg-[linear-gradient(180deg,rgba(255,255,255,0.88),rgba(239,247,243,0.78))] px-5 py-4 shadow-[var(--shadow-subtle)]">
+            <p className="text-[10px] font-extrabold uppercase tracking-[0.32em] text-[var(--text-soft)]">
+              Market coverage
             </p>
             <div className="mt-3 flex flex-wrap gap-2">
               {viewModel.trust.chips.slice(0, 3).map((chip) => (

@@ -35,20 +35,14 @@ export function SectionCard({
     ) : state === "empty" ? (
       <EmptyState
         compact
-        title={emptyTitle ?? "Nothing to show here yet"}
-        description={
-          emptyDescription ??
-          "This section is intentionally empty so the layout can handle low-signal states cleanly."
-        }
+        title={emptyTitle ?? "Nothing to show right now"}
+        description={emptyDescription ?? "This section has no live content to display yet."}
       />
     ) : state === "error" ? (
       <ErrorState
         compact
         title={errorTitle ?? "Section unavailable"}
-        description={
-          errorDescription ??
-          "This is a visual-only error state for the component system. No backend logic is attached."
-        }
+        description={errorDescription ?? "This section could not render safely from the live feed."}
       />
     ) : (
       children
@@ -56,21 +50,21 @@ export function SectionCard({
 
   const cardClass =
     variant === "spotlight"
-      ? "rounded-[34px] border border-[rgba(17,25,24,0.09)] bg-[linear-gradient(180deg,rgba(255,253,249,1),rgba(244,235,222,0.96))] p-6 shadow-[var(--shadow-soft)] sm:p-8"
+      ? "rounded-[34px] border border-[rgba(16,23,23,0.1)] bg-[linear-gradient(180deg,rgba(255,255,255,1),rgba(241,233,220,0.95))] p-6 shadow-[var(--shadow-soft)] sm:p-8"
       : variant === "dense"
-        ? "rounded-[28px] border border-[var(--border-soft)] bg-[var(--surface-strong)] p-5 shadow-[0_6px_16px_rgba(24,33,32,0.03)] sm:p-6"
-        : "rounded-[30px] border border-[rgba(17,25,24,0.08)] bg-[var(--surface)] p-6 shadow-[0_8px_18px_rgba(24,33,32,0.03)] sm:p-7";
+        ? "rounded-[28px] border border-[var(--border-soft)] bg-[rgba(255,253,249,0.96)] p-5 shadow-[0_8px_18px_rgba(16,23,23,0.03)] sm:p-6"
+        : "rounded-[30px] border border-[var(--border-soft)] bg-[rgba(255,253,249,0.88)] p-6 shadow-[0_12px_24px_rgba(16,23,23,0.04)] sm:p-7";
 
   return (
     <section className={cardClass}>
       {eyebrow ? (
-        <p className="text-[10px] font-semibold uppercase tracking-[0.34em] text-[var(--accent-teal)]">
+        <p className="text-[10px] font-extrabold uppercase tracking-[0.38em] text-[var(--accent-primary)]">
           {eyebrow}
         </p>
       ) : null}
-      <div className="mt-3 flex flex-wrap items-start justify-between gap-4 border-b border-[rgba(17,25,24,0.08)] pb-6">
+      <div className="mt-3 flex flex-wrap items-start justify-between gap-4 border-b border-[var(--border-soft)] pb-6">
         <div className="flex flex-col gap-2">
-          <h2 className={`${variant === "dense" ? "text-[1.35rem]" : "text-[1.65rem]"} font-sans leading-tight font-semibold tracking-[-0.045em] text-slate-950`}>
+          <h2 className={`${variant === "dense" ? "text-[1.35rem]" : "text-[1.8rem]"} font-sans leading-tight font-extrabold tracking-[-0.05em] text-[var(--foreground-strong)]`}>
             {title}
           </h2>
           {description ? (

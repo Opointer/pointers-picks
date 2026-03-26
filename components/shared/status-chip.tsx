@@ -25,17 +25,19 @@ export function StatusChip({
 
   const toneClass =
     tone === "accent"
-      ? "border-[rgba(13,92,99,0.12)] bg-[rgba(215,236,235,0.72)] text-[var(--accent-teal-strong)]"
+      ? "border-[rgba(15,91,87,0.16)] bg-[rgba(216,235,228,0.72)] text-[var(--accent-primary-strong)]"
       : tone === "success"
-        ? "border-emerald-700/12 bg-emerald-700/[0.06] text-emerald-900"
-      : tone === "warning"
-          ? "border-[rgba(155,106,33,0.14)] bg-[rgba(244,230,200,0.78)] text-[#6f4d17]"
-        : tone === "danger"
-          ? "border-rose-700/12 bg-[rgba(244,225,225,0.82)] text-rose-900"
-          : "border-[rgba(24,33,32,0.08)] bg-[rgba(246,240,230,0.7)] text-slate-700";
+        ? "border-emerald-700/14 bg-emerald-700/[0.06] text-emerald-900"
+        : tone === "warning"
+          ? "border-[rgba(156,108,33,0.16)] bg-[rgba(241,228,203,0.82)] text-[#734e12]"
+          : tone === "danger"
+            ? "border-rose-700/14 bg-[rgba(246,225,221,0.92)] text-rose-900"
+            : "border-[rgba(16,23,23,0.08)] bg-[rgba(244,237,228,0.86)] text-[var(--text-muted)]";
 
   return (
-    <span className={`inline-flex rounded-full border px-2.5 py-1 text-[9px] font-semibold tracking-[0.08em] uppercase ${toneClass}`}>
+    <span
+      className={`inline-flex items-center rounded-full border px-3 py-1.5 text-[9px] font-extrabold uppercase tracking-[0.14em] ${toneClass}`}
+    >
       {label}
     </span>
   );

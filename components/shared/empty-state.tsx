@@ -9,11 +9,11 @@ export function EmptyState({
 }) {
   return (
     <div
-      className={`rounded-[24px] border border-dashed border-[var(--border-soft)] bg-[var(--surface-soft)] ${
+      className={`rounded-[24px] border border-dashed border-[var(--border-soft)] bg-[rgba(242,234,223,0.72)] ${
         compact ? "p-5 text-left" : "p-8 text-center"
       }`}
     >
-      <h2 className={`${compact ? "text-lg" : "text-xl"} font-sans font-semibold tracking-[-0.03em] text-slate-950`}>{title}</h2>
+      <h2 className={`${compact ? "text-lg" : "text-xl"} font-sans font-extrabold tracking-[-0.04em] text-[var(--foreground-strong)]`}>{title}</h2>
       <p className="mt-3 text-sm leading-6 text-[var(--text-muted)]">{description}</p>
     </div>
   );

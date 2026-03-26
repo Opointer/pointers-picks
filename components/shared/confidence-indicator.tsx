@@ -8,10 +8,10 @@ export interface ConfidenceIndicatorProps {
 
 const toneMap = {
   high: { bars: 3, color: "bg-emerald-600", text: "text-emerald-900" },
-  medium: { bars: 2, color: "bg-amber-500", text: "text-amber-900" },
+  medium: { bars: 2, color: "bg-[var(--accent-gold)]", text: "text-[#734e12]" },
   low: { bars: 1, color: "bg-rose-500", text: "text-rose-900" },
-  measured: { bars: 2, color: "bg-[var(--accent-teal)]", text: "text-[var(--accent-teal-strong)]" },
-  reduced: { bars: 1, color: "bg-amber-500", text: "text-amber-900" },
+  measured: { bars: 2, color: "bg-[var(--accent-primary)]", text: "text-[var(--accent-primary-strong)]" },
+  reduced: { bars: 1, color: "bg-[var(--accent-gold)]", text: "text-[#734e12]" },
   capped: { bars: 2, color: "bg-slate-400", text: "text-slate-800" },
 } as const;
 
@@ -37,8 +37,8 @@ export function ConfidenceIndicator({
   const config = toneMap[tone];
 
   return (
-    <div className="flex items-center justify-between gap-3 rounded-[16px] border border-[rgba(17,25,24,0.07)] bg-[rgba(246,240,230,0.56)] px-3.5 py-2.5">
-      <span className={`text-[11px] font-semibold uppercase tracking-[0.1em] ${config.text}`}>{label}</span>
+    <div className="flex items-center justify-between gap-3 rounded-[18px] border border-[var(--border-soft)] bg-[rgba(242,234,223,0.64)] px-4 py-3">
+      <span className={`text-[11px] font-extrabold uppercase tracking-[0.12em] ${config.text}`}>{label}</span>
       <div className="flex items-end gap-1">
         {[0, 1, 2].map((index) => (
           <span

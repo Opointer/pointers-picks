@@ -54,8 +54,8 @@ export default async function MatchupPage({
         backLabel="Back to slate"
         variant="detail"
         aside={
-          <div className="rounded-[24px] border border-[rgba(17,25,24,0.08)] bg-[rgba(255,252,247,0.78)] px-5 py-4 shadow-[0_8px_18px_rgba(17,25,24,0.03)]">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.32em] text-[var(--text-soft)]">
+          <div className="rounded-[26px] border border-[rgba(16,23,23,0.08)] bg-[linear-gradient(180deg,rgba(255,255,255,0.88),rgba(239,247,243,0.78))] px-5 py-4 shadow-[var(--shadow-subtle)]">
+            <p className="text-[10px] font-extrabold uppercase tracking-[0.32em] text-[var(--text-soft)]">
               Market lane
             </p>
             <div className="mt-3 flex flex-wrap gap-2">
@@ -72,7 +72,7 @@ export default async function MatchupPage({
             variant="spotlight"
             eyebrow="Matchup"
             title="Game snapshot"
-            description="A feature view of the game: model range, recent form, and the best high-level context before you go deeper."
+            description="A feature view of the game: model range, recent form, and the cleanest high-level read before you go deeper."
           >
             <div className="grid gap-4 xl:grid-cols-[1.15fr_0.85fr]">
               <DataCard
@@ -81,7 +81,27 @@ export default async function MatchupPage({
                 description={detailViewModel.summaryCard.description}
                 footer={<p className="text-sm leading-6 text-[var(--text-soft)]">{detailViewModel.summaryCard.outlook}</p>}
               >
-                <div className="grid gap-3 md:grid-cols-2">
+                <div className="grid gap-4 lg:grid-cols-[0.72fr_1.28fr]">
+                  <div className="rounded-[22px] border border-[rgba(16,23,23,0.08)] bg-[rgba(20,52,51,0.95)] px-5 py-4 text-white">
+                    <p className="text-[10px] font-extrabold uppercase tracking-[0.26em] text-white/70">
+                      Prediction shape
+                    </p>
+                    <div className="mt-4 space-y-3">
+                      <div className="h-2 rounded-full bg-white/12">
+                        <div className="h-2 w-[69%] rounded-full bg-[var(--accent-gold)]" />
+                      </div>
+                      <div className="h-2 rounded-full bg-white/12">
+                        <div className="h-2 w-[58%] rounded-full bg-[#77c3ba]" />
+                      </div>
+                      <div className="h-2 rounded-full bg-white/12">
+                        <div className="h-2 w-[46%] rounded-full bg-white/70" />
+                      </div>
+                    </div>
+                    <p className="mt-4 text-sm leading-6 text-white/72">
+                      Confidence, projection range, and recent sample stay visible without turning the page into a model dump.
+                    </p>
+                  </div>
+                  <div className="grid gap-3 md:grid-cols-2">
                   <ConfidenceIndicator
                     label={detailViewModel.summaryCard.confidenceLabel}
                     tone={detailViewModel.summaryCard.confidenceTone}
@@ -92,6 +112,7 @@ export default async function MatchupPage({
                       value={detailViewModel.summaryCard.projectedRange}
                       detail="Model range"
                     />
+                  </div>
                   </div>
                 </div>
               </DataCard>
@@ -180,6 +201,13 @@ export default async function MatchupPage({
                     title={factor.title}
                     badge={factor.badge ? <StatusChip label={factor.badge.label} tone={factor.badge.tone} /> : undefined}
                     description={factor.description}
+                    footer={
+                      <div className="grid gap-2">
+                        <div className="h-2 rounded-full bg-[rgba(16,23,23,0.08)]">
+                          <div className="h-2 w-[64%] rounded-full bg-[var(--accent-primary)]" />
+                        </div>
+                      </div>
+                    }
                   />
                 ))}
               </div>

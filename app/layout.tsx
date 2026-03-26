@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { Manrope, Newsreader } from "next/font/google";
+import { Barlow_Condensed, Manrope } from "next/font/google";
 import { AppShell } from "@/components/layout/app-shell";
 import "./globals.css";
 
-const displayFont = Newsreader({
+const displayFont = Barlow_Condensed({
   subsets: ["latin"],
+  weight: ["600", "700"],
   variable: "--font-display",
 });
 

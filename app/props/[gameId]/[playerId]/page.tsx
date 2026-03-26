@@ -30,8 +30,8 @@ export default async function PlayerPropsPage({
         backLabel="Back to props"
         variant="detail"
         aside={
-          <div className="rounded-[24px] border border-[rgba(17,25,24,0.08)] bg-[rgba(255,252,247,0.78)] px-5 py-4 shadow-[0_8px_18px_rgba(17,25,24,0.03)]">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.32em] text-[var(--text-soft)]">
+          <div className="rounded-[26px] border border-[rgba(16,23,23,0.08)] bg-[linear-gradient(180deg,rgba(255,255,255,0.88),rgba(239,247,243,0.78))] px-5 py-4 shadow-[var(--shadow-subtle)]">
+            <p className="text-[10px] font-extrabold uppercase tracking-[0.32em] text-[var(--text-soft)]">
               Trust state
             </p>
             <div className="mt-3 flex flex-wrap gap-2">
@@ -78,7 +78,24 @@ export default async function PlayerPropsPage({
                       />
                     }
                   >
-                    <div className="grid gap-2 md:grid-cols-2">
+                    <div className="grid gap-4 lg:grid-cols-[0.72fr_1.28fr]">
+                      <div className="rounded-[22px] border border-[rgba(16,23,23,0.08)] bg-[rgba(20,52,51,0.95)] px-5 py-4 text-white">
+                        <p className="text-[10px] font-extrabold uppercase tracking-[0.26em] text-white/70">
+                          Market read
+                        </p>
+                        <div className="mt-4 space-y-3">
+                          <div className="h-2 rounded-full bg-white/12">
+                            <div className="h-2 w-[68%] rounded-full bg-[var(--accent-gold)]" />
+                          </div>
+                          <div className="h-2 rounded-full bg-white/12">
+                            <div className="h-2 w-[58%] rounded-full bg-[#77c3ba]" />
+                          </div>
+                        </div>
+                        <p className="mt-4 text-sm leading-6 text-white/72">
+                          Line, market trust, and projection context stay in one premium card without burying the decision state.
+                        </p>
+                      </div>
+                      <div className="grid gap-2 md:grid-cols-2">
                       <div className="rounded-[16px] border border-[rgba(17,25,24,0.07)] bg-[rgba(243,235,222,0.72)] p-4">
                         <p className="text-sm font-medium text-slate-900">Source</p>
                         <p className="mt-1 text-xs leading-5 text-[var(--text-soft)]">
@@ -102,6 +119,7 @@ export default async function PlayerPropsPage({
                             ? `${market.alternateCount} alternate line${market.alternateCount > 1 ? "s" : ""} tracked`
                             : "No alternate lines tracked"}
                         </p>
+                      </div>
                       </div>
                     </div>
                   </DataCard>

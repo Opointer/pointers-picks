@@ -67,8 +67,8 @@ export default async function TeamDetailPage({
         backLabel="Back to teams"
         variant="detail"
         aside={
-          <div className="rounded-[24px] border border-[rgba(17,25,24,0.08)] bg-[rgba(255,252,247,0.78)] px-5 py-4 shadow-[0_8px_18px_rgba(17,25,24,0.03)]">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.32em] text-[var(--text-soft)]">
+          <div className="rounded-[26px] border border-[rgba(16,23,23,0.08)] bg-[linear-gradient(180deg,rgba(255,255,255,0.88),rgba(239,247,243,0.78))] px-5 py-4 shadow-[var(--shadow-subtle)]">
+            <p className="text-[10px] font-extrabold uppercase tracking-[0.32em] text-[var(--text-soft)]">
               Team profile
             </p>
             <p className="mt-2 text-sm leading-6 text-[var(--text-muted)]">
@@ -94,6 +94,22 @@ export default async function TeamDetailPage({
                 description={card.description}
               />
             ))}
+          </div>
+          <div className="mt-6 rounded-[22px] border border-[rgba(16,23,23,0.08)] bg-[rgba(20,52,51,0.95)] px-5 py-4 text-white">
+            <p className="text-[10px] font-extrabold uppercase tracking-[0.26em] text-white/70">
+              Profile signal
+            </p>
+            <div className="mt-4 grid gap-3 md:grid-cols-3">
+              <div className="h-2 rounded-full bg-white/12">
+                <div className="h-2 w-[66%] rounded-full bg-[var(--accent-gold)]" />
+              </div>
+              <div className="h-2 rounded-full bg-white/12">
+                <div className="h-2 w-[58%] rounded-full bg-[#77c3ba]" />
+              </div>
+              <div className="h-2 rounded-full bg-white/12">
+                <div className="h-2 w-[48%] rounded-full bg-white/70" />
+              </div>
+            </div>
           </div>
         </SectionCard>
 

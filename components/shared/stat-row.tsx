@@ -35,10 +35,10 @@ export function StatRow({
   return (
     <div className="flex items-start justify-between gap-4 border-t border-[var(--border-soft)] py-3.5 first:border-t-0 first:pt-0 last:pb-0">
       <div className="min-w-0">
-        <p className="text-sm font-semibold text-slate-900">{label}</p>
+        <p className="text-sm font-bold text-[var(--foreground-strong)]">{label}</p>
         {detail ? <p className="mt-1 text-xs leading-5 text-[var(--text-soft)]">{detail}</p> : null}
       </div>
-      <p className="shrink-0 text-sm font-semibold text-slate-800">{value}</p>
+      <p className="shrink-0 text-sm font-extrabold text-[var(--foreground)]">{value}</p>
     </div>
   );
 }

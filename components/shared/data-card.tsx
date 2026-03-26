@@ -41,14 +41,15 @@ export function DataCard({
 }: DataCardProps) {
   const shellClass =
     variant === "feature"
-      ? "rounded-[32px] border border-[rgba(17,25,24,0.12)] bg-[linear-gradient(180deg,rgba(255,253,249,1),rgba(246,236,223,0.97))] p-8 shadow-[0_26px_52px_rgba(17,25,24,0.09)]"
+      ? "rounded-[30px] border border-[rgba(16,23,23,0.12)] bg-[linear-gradient(180deg,rgba(255,255,255,0.99),rgba(240,231,218,0.94))] p-7 shadow-[var(--shadow-raise)]"
       : variant === "stat"
-        ? "rounded-[20px] border border-[rgba(17,25,24,0.08)] bg-[var(--surface-strong)] p-4 shadow-[0_4px_10px_rgba(17,25,24,0.025)]"
+        ? "rounded-[22px] border border-[var(--border-soft)] bg-[var(--surface-strong)] p-5 shadow-[0_8px_18px_rgba(16,23,23,0.03)]"
         : variant === "context"
-          ? "rounded-[22px] border border-[rgba(17,25,24,0.06)] bg-[rgba(255,252,247,0.66)] p-4 shadow-[0_2px_8px_rgba(17,25,24,0.016)]"
-        : variant === "compact"
-          ? "rounded-[20px] border border-[rgba(17,25,24,0.08)] bg-[var(--surface-strong)] p-4 shadow-[0_4px_10px_rgba(17,25,24,0.025)]"
-          : "rounded-[26px] border border-[rgba(17,25,24,0.07)] bg-[rgba(255,252,247,0.8)] p-6 shadow-[0_4px_10px_rgba(17,25,24,0.018)]";
+          ? "rounded-[22px] border border-[rgba(16,23,23,0.06)] bg-[rgba(255,253,249,0.72)] p-5 shadow-[0_6px_14px_rgba(16,23,23,0.018)]"
+          : variant === "compact"
+            ? "rounded-[24px] border border-[var(--border-soft)] bg-[rgba(255,253,249,0.92)] p-5 shadow-[0_8px_18px_rgba(16,23,23,0.03)]"
+            : "rounded-[26px] border border-[var(--border-soft)] bg-[rgba(255,253,249,0.9)] p-6 shadow-[0_10px_22px_rgba(16,23,23,0.035)]";
+
   if (state === "loading") {
     return (
       <article className={`animate-pulse ${shellClass}`}>
@@ -69,10 +70,7 @@ export function DataCard({
         <EmptyState
           compact
           title={emptyTitle ?? "No card data"}
-          description={
-            emptyDescription ??
-            "Use this empty state when a card has no meaningful content to render yet."
-          }
+          description={emptyDescription ?? "There is no live content to show in this module right now."}
         />
       </article>
     );
@@ -84,37 +82,49 @@ export function DataCard({
         <ErrorState
           compact
           title={errorTitle ?? "Card unavailable"}
-          description={
-            errorDescription ??
-            "Use this visual-only error state when content cannot be shown cleanly."
-          }
+          description={errorDescription ?? "This module could not render cleanly from the current live feed."}
         />
       </article>
     );
   }
 
+  const titleClass =
+    variant === "feature"
+      ? "ui-masthead text-[2.7rem] leading-[0.94]"
+      : variant === "stat"
+        ? "font-sans text-[1.95rem] leading-none tracking-[-0.05em]"
+        : variant === "compact"
+          ? "font-sans text-[1.18rem] leading-tight tracking-[-0.04em]"
+          : variant === "context"
+            ? "font-sans text-[1rem] leading-tight tracking-[-0.02em]"
+            : "font-sans text-[1.45rem] leading-tight tracking-[-0.04em]";
+
   const cardBody = (
     <>
       <div className="flex flex-wrap items-start justify-between gap-3">
-        <div>
+        <div className="min-w-0">
           {eyebrow ? (
-            <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[var(--text-soft)]">
+            <p className="text-[10px] font-extrabold uppercase tracking-[0.28em] text-[var(--text-soft)]">
               {eyebrow}
             </p>
           ) : null}
-          <h3 className={`${variant === "stat" ? "font-sans text-[1.75rem] font-semibold tracking-[-0.04em]" : variant === "feature" ? "text-[2.65rem] font-semibold tracking-[-0.055em]" : variant === "compact" ? "font-sans text-[1.2rem] font-semibold tracking-[-0.035em]" : variant === "context" ? "font-sans text-[1.02rem] font-semibold tracking-[-0.02em]" : "font-sans text-[1.42rem] font-semibold tracking-[-0.04em]"} mt-3 leading-tight text-slate-950`}>
-            {title}
-          </h3>
-          {subtitle ? <p className="mt-1.5 text-sm leading-6 text-[var(--accent-ink)]">{subtitle}</p> : null}
+          <h3 className={`${titleClass} mt-3 text-[var(--foreground-strong)]`}>{title}</h3>
+          {subtitle ? (
+            <p className="mt-2 text-sm font-semibold leading-6 text-[var(--accent-primary-strong)]">{subtitle}</p>
+          ) : null}
         </div>
         {badge}
       </div>
-      {description ? <p className={`${variant === "compact" || variant === "stat" ? "mt-3" : "mt-4"} text-sm leading-7 text-[var(--text-muted)]`}>{description}</p> : null}
-      {children ? <div className={variant === "feature" ? "mt-7" : "mt-5"}>{children}</div> : null}
-      {footer ? <div className={variant === "feature" ? "mt-7" : "mt-5"}>{footer}</div> : null}
+      {description ? (
+        <p className={`${variant === "feature" ? "mt-4" : "mt-3"} text-sm leading-7 text-[var(--text-muted)]`}>
+          {description}
+        </p>
+      ) : null}
+      {children ? <div className={variant === "feature" ? "mt-6" : "mt-5"}>{children}</div> : null}
+      {footer ? <div className={variant === "feature" ? "mt-6" : "mt-5"}>{footer}</div> : null}
       {href ? (
-        <div className={`${variant === "feature" ? "mt-7" : "mt-5"} border-t border-[var(--border-soft)] pt-4`}>
-          <span className="inline-flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.08em] text-[var(--accent-teal-strong)] transition duration-150 group-hover:text-[var(--accent-teal)]">
+        <div className={`${variant === "feature" ? "mt-6" : "mt-5"} border-t border-[var(--border-soft)] pt-4`}>
+          <span className="inline-flex items-center gap-2 text-[12px] font-extrabold uppercase tracking-[0.14em] text-[var(--accent-primary-strong)] transition duration-150 group-hover:text-[var(--accent-primary)]">
             {actionLabel}
             <span aria-hidden="true">↗</span>
           </span>
@@ -126,13 +136,11 @@ export function DataCard({
   return href ? (
     <Link
       href={href}
-      className={`group block ${shellClass} transition duration-150 hover:-translate-y-[1px] hover:border-[var(--border-strong)] hover:bg-white hover:shadow-[0_20px_34px_rgba(17,25,24,0.075)]`}
+      className={`group block ${shellClass} transition duration-200 hover:-translate-y-[2px] hover:border-[var(--border-strong)] hover:bg-white hover:shadow-[var(--shadow-raise)]`}
     >
       {cardBody}
     </Link>
   ) : (
-    <article className={shellClass}>
-      {cardBody}
-    </article>
+    <article className={shellClass}>{cardBody}</article>
   );
 }
